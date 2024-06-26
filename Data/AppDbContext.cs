@@ -17,6 +17,7 @@ namespace Capstone.Data
         public DbSet<LeaveType> LeaveTypes {get; set; }
         public DbSet<Holiday> Holidays {get; set; }
         public DbSet<ErrorLog> ErrorLogs {get; set; }
+        public DbSet<Goals> Goals { get; set; }
 
         // We have to override the default behavior to ensure the foreign key constraint is established.
         // If we do not do this then the columns will still be create but the constraints will not be enforced
