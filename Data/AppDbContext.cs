@@ -46,6 +46,16 @@ namespace Capstone.Data
             .WithOne(em => em.Manager)
             .HasForeignKey(em => em.ManagerId);      
 
+            /* Settings for the "1 Performance to Many Goals" relationship*/
+            modelBuilder.Entity<Performance>()
+            .HasMany(pr => pr.Goals)
+            .WithOne(gl => gl.Performance)
+            .HasForeignKey(gl => gl.PerformanceId); 
+
+            /* Setting for Primary Key on Goals Table*/ 
+            modelBuilder.Entity<Goals>()
+            .HasKey(gl=> gl.GoalId);
+
             /* Setting for Primary Key on LeaveType Table*/ 
             modelBuilder.Entity<LeaveRequest>()
             .HasKey(lr=> lr.LeaveId);

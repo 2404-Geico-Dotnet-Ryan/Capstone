@@ -9,7 +9,10 @@ namespace Capstone.Models
         public DateTime Birthday { get; set; }
         public DateTime HireDate { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Address { get; set; }
+        public string? AddressLine1 { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? ZipCode { get; set; }
         public string? Email { get; set; }
         public int PtoLeaveHours { get; set; }
         public int ReqPtoLeaveHours { get; set; }
@@ -42,7 +45,8 @@ namespace Capstone.Models
 
         /* FULL Argurments Constructor */
         public Employee(int employeeId, int managerId,  string firstName, string lastName, DateTime birthday, 
-                        DateTime hireDate, string phoneNumber, string address, string email, int ptoLeaveHours, 
+                        DateTime hireDate, string phoneNumber, string addressLine1, string city, string state, string zipCode, 
+                        string email, int ptoLeaveHours, 
                         int reqPtoLeaveHours, int floatingHolidayHours, int reqFloatingHolidayHours,
                         bool isManager, bool isAdmin)
         {
@@ -53,7 +57,10 @@ namespace Capstone.Models
             Birthday = birthday;
             HireDate = hireDate;
             PhoneNumber = phoneNumber;
-            Address = address;
+            AddressLine1 = addressLine1;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
             Email= email;
             PtoLeaveHours = ptoLeaveHours;
             ReqPtoLeaveHours= reqPtoLeaveHours;
