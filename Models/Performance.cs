@@ -6,16 +6,19 @@ namespace Capstone.Models
         public int EmployeeId { get; set; }
         public int ManagerId { get; set; }
         public string? ReviewPeriod { get; set; }
-        public string? Goal { get; set; }
-        public string? Deliverable { get; set; }
-        public string? Deadline { get; set; }
-        public int Weightage { get; set; }
         public string? Achievements { get; set; }
         public string? ImprovementAreas { get; set; }
+        public int TotalReviewScore { get; set; }
+        public bool IsCompletedPA { get; set; }
+        public bool IsCompletedReview { get; set; }
 
         // This establishes the "one to one" relationship 
         // One Performance to One Employee  
         public Employee Employee { get; set; }
+
+        // This establishes the "one to many" relationship 
+        // One Employee to Many LeaveRequest
+        public ICollection<Goals> Goals { get; set; }
         
         /* NO Argurments Constructor*/
         public Performance()
@@ -24,19 +27,18 @@ namespace Capstone.Models
         }
 
         /* FULL Argurments Constructor */
-        public Performance(int performanceId , int employeeId, int managerId, string reviewPeriod, string goal, string deliverable, 
-                            string deadline, int weightage, string achievements, string improvementAreas)
+        public Performance(int performanceId , int employeeId, int managerId, string reviewPeriod, string achievements, 
+                           string improvementAreas, int totalReviewScore, bool isCompletedPA, bool isCompletedReview)
         {
             PerformanceId = performanceId;
             EmployeeId = employeeId;
             ManagerId = managerId;
             ReviewPeriod = reviewPeriod;
-            Goal = goal;
-            Deliverable = deliverable;
-            Deadline = deadline;
-            Weightage = weightage;
             Achievements = achievements;
             ImprovementAreas = improvementAreas;
+            TotalReviewScore = totalReviewScore;
+            IsCompletedPA = isCompletedPA;
+            IsCompletedReview = isCompletedReview;
         }
     }
 }
