@@ -1,7 +1,6 @@
 using Capstone.Data;
 using Capstone.Services;
 using Microsoft.EntityFrameworkCore;
-using Capstone.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
