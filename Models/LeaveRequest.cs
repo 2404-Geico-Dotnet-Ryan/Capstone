@@ -9,6 +9,7 @@ namespace Capstone.Models
         public DateTime LeaveStartDate { get; set; }
         public DateTime LeaveEndDate { get; set; }
         public int HoursTaken { get; set; }
+        public string? Status { get; set; }
         public bool IsApproved { get; set; }
 
         // This establishes the "one to one" relationship 
@@ -23,7 +24,7 @@ namespace Capstone.Models
 
         /* FULL Argurments Constructor */
         public LeaveRequest(int leaveId , int employeeId, int managerId, string leaveType, DateTime leaveStartDate, 
-                            DateTime leaveEndDate , int hoursTaken, bool isApproved)
+                            DateTime leaveEndDate , int hoursTaken, string status, bool isApproved)
         {
             LeaveId = leaveId;
             EmployeeId = employeeId;
@@ -32,6 +33,7 @@ namespace Capstone.Models
             LeaveStartDate = leaveStartDate;
             LeaveEndDate = leaveEndDate;
             HoursTaken = hoursTaken;
+            Status = status;
             IsApproved = isApproved;
         }
     }
