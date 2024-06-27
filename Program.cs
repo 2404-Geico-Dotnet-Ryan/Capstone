@@ -1,7 +1,6 @@
 using Capstone.Data;
 using Capstone.Services;
 using Microsoft.EntityFrameworkCore;
-using Capstone.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IGoalsService, GoalsService>();
+builder.Services.AddScoped<IPerformanceService, PerformanceService>();
 
 
 // Add CORS policy

@@ -12,12 +12,12 @@ namespace Capstone.Models
         public bool IsCompletedPA { get; set; }
         public bool IsCompletedReview { get; set; }
 
-        // This establishes the "one to one" relationship 
-        // One Performance to One Employee  
+        // This establishes the  'one to many' relationship 
+        // One Employee to Many Performance Reviews
         public Employee Employee { get; set; }
 
         // This establishes the "one to many" relationship 
-        // One Employee to Many LeaveRequest
+        // One Employee to Many Goals
         public ICollection<Goals> Goals { get; set; }
         
         /* NO Argurments Constructor*/
@@ -27,8 +27,7 @@ namespace Capstone.Models
         }
 
         /* FULL Argurments Constructor */
-        public Performance(int performanceId , int employeeId, int managerId, string reviewPeriod, string achievements, 
-                           string improvementAreas, int totalReviewScore, bool isCompletedPA, bool isCompletedReview)
+        public Performance(int performanceId , int employeeId, int managerId, string reviewPeriod, string achievements, string improvementAreas, int totalReviewScore, bool isCompletedPA, bool isCompletedReview)
         {
             PerformanceId = performanceId;
             EmployeeId = employeeId;

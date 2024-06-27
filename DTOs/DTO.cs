@@ -3,7 +3,19 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace Capstone.DTOs
 {
-
+    public class PerformanceDTO
+    {
+        public int PerformanceId { get; set; }
+        public int EmployeeId { get; set; }
+        public int ManagerId { get; set; }
+        public string? ReviewPeriod { get; set; }
+        public string? Achievements { get; set; }
+        public string? ImprovementAreas { get; set; }
+        public int TotalReviewScore { get; set; }
+        public bool IsCompletedPA { get; set; }
+        public bool IsCompletedReview { get; set; }
+        public ICollection<GoalsDTO>? Goals { get; set; }
+    }
 
     public class GoalsDTO
     {
