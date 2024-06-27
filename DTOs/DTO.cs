@@ -53,4 +53,12 @@ namespace Capstone.DTOs
         public bool IsAdmin { get; set; }
     }
 
+    public class LoginDTO
+    {
+        public int? LoginId { get; set; }
+        public int EmployeeId { get; set; }
+        public string? UserName { get; set; }
+        public string? UserPassword { get; set; }
+        
+    }
 }
