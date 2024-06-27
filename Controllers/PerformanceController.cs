@@ -17,6 +17,14 @@ namespace Capstone.Controllers
             _performanceService = performanceService;
         }
 
+        [HttpGet]
+
+        public ActionResult<IEnumerable<PerformanceDTO>> GetPerformanceReviews()
+        {
+            var performances = _performanceService.GetAllPerformanceReviews();
+            return Ok(performances);
+        }
+
         [HttpGet("{employeeId}/{reviewPeriod}")]
         public async Task<ActionResult<PerformanceDTO>> GetByEmployeeIdAndReviewPeriod(int employeeId, string reviewPeriod)
         {
@@ -28,6 +36,14 @@ namespace Capstone.Controllers
             }
 
             return performance;
+        }
+
+        [HttpPost]
+        public ActionResult<PerformanceDTO> PostPerformance(PerformanceDTO performanceDTO)
+        {
+            var performance = _performanceService.AddPerformanceReview(performanceDTO);
+
+            return CreatedAtAction(nameof(GetPerformanceReviews), new { performancId = performance.PerformanceId }, performanceDTO);
         }
 
         //tested in swagger (without entering goals as DB was empty at the time), passing
