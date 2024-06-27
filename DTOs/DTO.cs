@@ -81,6 +81,13 @@ namespace Capstone.DTOs
         public string? LeaveTypeName { get; set; }
         public bool IsPaid { get; set; }
     }
+     public class HolidayDTO
+    {
+         public int HolidayId { get; set; }
+        public string? HolidayName { get; set; }
+        public string? HolidayYear { get; set; }
+        public string? HolidayDate { get; set; }
+    }
 
     public class ManagerDTO
     {
