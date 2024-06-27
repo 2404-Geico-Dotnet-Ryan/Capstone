@@ -17,6 +17,54 @@ namespace Capstone.Services
             _context = context;
         }
 
+
+        // POST Performance Review
+        public Performance AddPeformanceReview(PerformanceDTO performanceDTO)
+        {
+            var employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == performanceDTO.EmployeeId);
+
+            var performance = new Performance
+            {
+                Employee = employee,
+                ManagerId = performanceDTO.ManagerId,
+                ReviewPeriod = performanceDTO.ReviewPeriod,
+                Achievements = performanceDTO.Achievements,
+                ImprovementAreas = performanceDTO.ImprovementAreas,
+                TotalReviewScore = performanceDTO.TotalReviewScore,
+                IsCompletedPA = performanceDTO.IsCompletedPA,
+                IsCompletedReview = performanceDTO.IsCompletedReview
+            };
+            _context.Performances.Add(performance);
+            _context.SaveChanges();
+
+            return performance;
+        }
+
+        public IEnumerable<PerformanceDTO>GetAllPerformanceReviews()
+        {
+            var performances = _context.Performances
+                .Include(p => p.Employee)
+                .Select(p => new PerformanceDTO
+                {
+                    PerformanceId = p.PerformanceId,
+                    EmployeeId = p.EmployeeId,
+                    ManagerId = p.ManagerId,
+                    ReviewPeriod = p.ReviewPeriod,
+                    Achievements = p.Achievements,
+                    ImprovementAreas = p.ImprovementAreas,
+                    TotalReviewScore = p.TotalReviewScore,
+                    IsCompletedPA = p.IsCompletedPA,
+                    IsCompletedReview = p.IsCompletedReview
+
+                }).ToList();
+            return performances;
+        }
+
+        
+
+        
+        
+
         //GET Perf Review by EmployeeId AND ReviewPeriod
         public async Task<ActionResult<PerformanceDTO>> GetByEmployeeIdAndReviewPeriod (int employeeId, string reviewPeriod)
         {
