@@ -61,4 +61,24 @@ namespace Capstone.DTOs
         public string? UserPassword { get; set; }
         
     }
+
+    public class LeaveRequestDTO
+    {
+        public int LeaveId { get; set; }
+        public int EmployeeId { get; set; }
+        public int ManagerId { get; set; }
+        public string? LeaveType { get; set; }
+        public DateTime LeaveStartDate { get; set; }
+        public DateTime LeaveEndDate { get; set; }
+        public int HoursTaken { get; set; }
+        public bool IsApproved { get; set; }
+    }
+
+    public class LeaveTypeDTO
+    {
+        public int LeaveTypeId { get; set; }
+        public string? LeaveTypeName { get; set; }
+        public bool IsPaid { get; set; }
+    }
+
 }
