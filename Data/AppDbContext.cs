@@ -8,7 +8,7 @@ namespace Capstone.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        // We provide the models through the DbSet<'modle name'> fields
+        // We provide the models through the DbSet<'model name'> fields
         public DbSet<Login> Logins { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Manager> Managers { get; set; }

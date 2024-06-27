@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IGoalsService, GoalsService>();
+builder.Services.AddScoped<IPerformanceService, PerformanceService>();
 
 
 // Add CORS policy
