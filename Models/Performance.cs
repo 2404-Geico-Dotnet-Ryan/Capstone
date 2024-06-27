@@ -17,7 +17,7 @@ namespace Capstone.Models
         public Employee Employee { get; set; }
 
         // This establishes the "one to many" relationship 
-        // One Employee to Many Goals
+        // One Performance to Many Goals
         public ICollection<Goals> Goals { get; set; }
         
         /* NO Argurments Constructor*/
