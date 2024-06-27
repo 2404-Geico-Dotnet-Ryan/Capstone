@@ -17,7 +17,7 @@ namespace Capstone.Services
         //Get All Holidays for table display
         public List<HolidayDTO> GetHolidays()
         {
-            return _context.Employees.Select(h => new HolidayDTO
+            return _context.Holidays.Select(h => new HolidayDTO
             {
                 HolidayName = h.HolidayName,
                 HolidayYear = h.HolidayYear,
