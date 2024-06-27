@@ -1,6 +1,8 @@
 using Capstone.Models;
 using Capstone.DTOs;
 using Capstone.Data;
+using Microsoft.Identity.Client;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,6 +61,60 @@ namespace Capstone.Services
             };
 
             return performanceDto;
+        }
+
+
+
+        public void DeletePerformance(int performanceId)
+        {
+            var performance = _context.Performances.Find(performanceId);
+            if (performance != null)
+            {
+                _context.Performances.Remove(performance);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception ("Performance not found");
+            }
+        }
+
+        public PerformanceDTO UpdatePerformance(int performanceId, PerformanceDTO updatedPerformanceDTO)
+        {
+            var performance = _context.Performances
+                .Include(p => p.Employee)
+                .Include(p => p.Goals)
+                .FirstOrDefault(p => p.PerformanceId == performanceId);
+            var employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == updatedPerformanceDTO.EmployeeId);
+            // var goal = _context.
+
+            if (performance == null)
+            {
+                return null;
+            }
+
+            performance.ReviewPeriod = updatedPerformanceDTO.ReviewPeriod;
+            performance.Achievements = updatedPerformanceDTO.Achievements;
+            performance.ImprovementAreas = updatedPerformanceDTO.ImprovementAreas;
+            performance.TotalReviewScore = updatedPerformanceDTO.TotalReviewScore;
+            performance.IsCompletedPA = updatedPerformanceDTO.IsCompletedPA;
+            performance.IsCompletedReview = updatedPerformanceDTO.IsCompletedReview;
+            performance.Employee = employee;
+            // performance.Goals = goal;
+
+            _context.Performances.Update(performance);
+            _context.SaveChanges();
+            return updatedPerformanceDTO;
+        }
+
+                public Performance AddPerformance(PerformanceDTO performanceDTO)
+        {
+            throw new NotImplementedException();
+        }
+
+                public IEnumerable<PerformanceDTO> GetAllPerformances()
+        {
+            throw new NotImplementedException();
         }
     }
 }

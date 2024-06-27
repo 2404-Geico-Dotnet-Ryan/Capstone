@@ -29,5 +29,21 @@ namespace Capstone.Controllers
 
             return performance;
         }
+
+        //tested in swagger (without entering goals as DB was empty at the time), passing
+        [HttpPut("{performanceId}")]
+        public ActionResult<PerformanceDTO> UpdatePerformance(int performanceId, PerformanceDTO updatedPerformance)
+        {
+            _performanceService.UpdatePerformance(performanceId, updatedPerformance);
+            return Ok(updatedPerformance);
+        }
+
+        //tested in swagger, passing
+        [HttpDelete("{performanceId}")]
+        public IActionResult DeletePerformance(int performanceId)
+        {
+            _performanceService.DeletePerformance(performanceId);
+            return Ok();
+        }
     }
 }

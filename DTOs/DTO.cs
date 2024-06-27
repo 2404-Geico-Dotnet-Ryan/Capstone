@@ -82,4 +82,13 @@ namespace Capstone.DTOs
         public bool IsPaid { get; set; }
     }
 
+    public class ManagerDTO
+    {
+       public int ManagerId { get; set; }
+        public string? Department { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+      
+    }
+
 }
