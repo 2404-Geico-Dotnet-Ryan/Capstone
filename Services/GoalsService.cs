@@ -17,6 +17,8 @@ namespace Capstone.Services
             _context = context;
         }
 
+
+
         public Goals CreateGoal(GoalsDTO goalsDTO)
         {
             if (goalsDTO == null)
@@ -45,17 +47,60 @@ namespace Capstone.Services
 
         public void DeleteGoal(int GoalId)
         {
-            throw new NotImplementedException();
+            var goal = _context.Goals.FirstOrDefault(g => g.GoalId == GoalId);
+            if (goal != null)
+            {
+                _context.Goals.Remove(goal);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Goal not found");
+            }
         }
 
         public IEnumerable<GoalsDTO> GetAllGoals()
         {
-            throw new NotImplementedException();
+           var goals = _context.Goals.ToList();
+            List<GoalsDTO> goalsDTO = new List<GoalsDTO>();
+            foreach (var goal in goals)
+            {
+                goalsDTO.Add(new GoalsDTO
+                {
+                    GoalId = goal.GoalId,
+                    PerformanceId = goal.PerformanceId,
+                    Goal = goal.Goal,
+                    Deliverable = goal.Deliverable,
+                    Deadline = goal.Deadline,
+                    Weightage = goal.Weightage,
+                    GoalScore = goal.GoalScore,
+                    ManagerFeedback = goal.ManagerFeedback
+                });
+            }
+            return goalsDTO;
         }
 
         public GoalsDTO GetGoalByGoalId(int GoalId)
         {
-            throw new NotImplementedException();
+           var goal = _context.Goals.FirstOrDefault(g => g.GoalId == GoalId);
+            if (goal != null)
+            {
+                return new GoalsDTO
+                {
+                    GoalId = goal.GoalId,
+                    PerformanceId = goal.PerformanceId,
+                    Goal = goal.Goal,
+                    Deliverable = goal.Deliverable,
+                    Deadline = goal.Deadline,
+                    Weightage = goal.Weightage,
+                    GoalScore = goal.GoalScore,
+                    ManagerFeedback = goal.ManagerFeedback
+                };
+            }
+            else
+            {
+                throw new Exception("Goal not found");
+            }
         }
 
         public IEnumerable<GoalsDTO> GetGoalsByPerformanceId(int PerformanceId)
@@ -65,7 +110,23 @@ namespace Capstone.Services
 
         public void UpdateGoal(int goalId, GoalsDTO UpdateGoal)
         {
-            throw new NotImplementedException();
+            var goal = _context.Goals.FirstOrDefault(g => g.GoalId == goalId);
+            if (goal != null)
+            {
+                goal.GoalId = UpdateGoal.GoalId;
+                goal.PerformanceId = UpdateGoal.PerformanceId;
+                goal.Goal = UpdateGoal.Goal;
+                goal.Deliverable = UpdateGoal.Deliverable;
+                goal.Deadline = UpdateGoal.Deadline;
+                goal.Weightage = UpdateGoal.Weightage;
+                goal.GoalScore = UpdateGoal.GoalScore;
+                goal.ManagerFeedback = UpdateGoal.ManagerFeedback;
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Goal not found");
+            }
         }
 
         GoalsDTO IGoalsService.CreateGoal(GoalsDTO Goal)
