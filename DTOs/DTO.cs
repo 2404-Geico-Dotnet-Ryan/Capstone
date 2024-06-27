@@ -58,7 +58,7 @@ namespace Capstone.DTOs
         public int? LoginId { get; set; }
         public int EmployeeId { get; set; }
         public string? UserName { get; set; }
-        public string? UserPassword { get; set; }
+        public string? Password { get; set; }
         
     }
 
