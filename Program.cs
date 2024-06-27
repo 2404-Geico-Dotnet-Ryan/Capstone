@@ -15,6 +15,8 @@ builder.Services.AddScoped<IGoalsService, GoalsService>();
 builder.Services.AddScoped<IPerformanceService, PerformanceService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IPerformanceService, PerformanceService>();
+builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
+
 
 // Add CORS policy
 builder.Services.AddCors(options =>

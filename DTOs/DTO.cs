@@ -71,6 +71,7 @@ namespace Capstone.DTOs
         public DateTime LeaveStartDate { get; set; }
         public DateTime LeaveEndDate { get; set; }
         public int HoursTaken { get; set; }
+        public string? Status { get; set; }
         public bool IsApproved { get; set; }
     }
 
