@@ -105,7 +105,23 @@ namespace Capstone.Services
 
         public IEnumerable<GoalsDTO> GetGoalsByPerformanceId(int PerformanceId)
         {
-            throw new NotImplementedException();
+            var goals = _context.Goals.Where(g => g.PerformanceId == PerformanceId).ToList();
+            List<GoalsDTO> goalsDTO = new List<GoalsDTO>();
+            foreach (var goal in goals)
+            {
+                goalsDTO.Add(new GoalsDTO
+                {
+                    GoalId = goal.GoalId,
+                    PerformanceId = goal.PerformanceId,
+                    Goal = goal.Goal,
+                    Deliverable = goal.Deliverable,
+                    Deadline = goal.Deadline,
+                    Weightage = goal.Weightage,
+                    GoalScore = goal.GoalScore,
+                    ManagerFeedback = goal.ManagerFeedback
+                });
+            }
+            return goalsDTO;
         }
 
         public void UpdateGoal(int goalId, GoalsDTO UpdateGoal)
