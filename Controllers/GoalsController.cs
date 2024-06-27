@@ -122,7 +122,29 @@ namespace Capstone.Controllers
 
     }
 
+    //get multiple goals by the FK - PerformanceId
+
+    [HttpGet("PerformanceId/{PerformanceId}")]
+    public ActionResult<IEnumerable<GoalsDTO>> GetGoalsByPerformanceId(int PerformanceId)
+    {
+        var goals = _context.Goals.Where(g => g.PerformanceId == PerformanceId).Select(g => new GoalsDTO
+        {
+            GoalId = g.GoalId,
+            PerformanceId = g.PerformanceId,
+            Goal = g.Goal,
+            Deliverable = g.Deliverable,
+            Deadline = g.Deadline,
+            Weightage = g.Weightage,
+            GoalScore = g.GoalScore,
+            ManagerFeedback = g.ManagerFeedback
+        }).ToList();
+        return goals;
+
+
+
+
 
 }
 
+}
 }
