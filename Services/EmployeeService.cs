@@ -1,5 +1,6 @@
 using Capstone.Data;
 using Capstone.DTOs;
+using Capstone.Models;
 
 namespace Capstone.Services
 {
@@ -29,6 +30,10 @@ namespace Capstone.Services
                 State = e.State,
                 ZipCode = e.ZipCode,
                 Email = e.Email,
+                PtoLeaveHours = e.PtoLeaveHours,
+                ReqPtoLeaveHours = e.ReqPtoLeaveHours,
+                FloatingHolidayHours = e.FloatingHolidayHours,
+                ReqFloatingHolidayHours = e.ReqFloatingHolidayHours,
                 IsManager = e.IsManager,
                 IsAdmin = e.IsAdmin
             }).ToList();
@@ -56,9 +61,83 @@ namespace Capstone.Services
                 State = employee.State,
                 ZipCode = employee.ZipCode,
                 Email = employee.Email,
+                PtoLeaveHours = employee.PtoLeaveHours,
+                ReqPtoLeaveHours = employee.ReqPtoLeaveHours,
+                FloatingHolidayHours = employee.FloatingHolidayHours,
+                ReqFloatingHolidayHours = employee.ReqFloatingHolidayHours,
                 IsManager = employee.IsManager,
                 IsAdmin = employee.IsAdmin
             };
+        }
+
+        //Add Employee
+        public EmployeeDTO AddEmployee(EmployeeDTO employeeDTO)
+        {
+            var employee = new Employee
+            {
+                ManagerId = employeeDTO.ManagerId,
+                FirstName = employeeDTO.FirstName,
+                LastName = employeeDTO.LastName,
+                Birthday = employeeDTO.Birthday,
+                HireDate = employeeDTO.HireDate,
+                PhoneNumber = employeeDTO.PhoneNumber,
+                AddressLine1 = employeeDTO.AddressLine1,
+                City = employeeDTO.City,
+                State = employeeDTO.State,
+                ZipCode = employeeDTO.ZipCode,
+                Email = employeeDTO.Email,
+                PtoLeaveHours = employeeDTO.PtoLeaveHours,
+                ReqPtoLeaveHours = employeeDTO.ReqPtoLeaveHours,
+                FloatingHolidayHours = employeeDTO.FloatingHolidayHours,
+                ReqFloatingHolidayHours = employeeDTO.ReqFloatingHolidayHours,
+                IsManager = employeeDTO.IsManager,
+                IsAdmin = employeeDTO.IsAdmin
+            };
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
+            employeeDTO.EmployeeId = employee.EmployeeId;
+            return employeeDTO;
+        }
+
+        //Update Employee
+        public EmployeeDTO UpdateEmployee(int id, EmployeeDTO employeeDTO)
+        {
+            var employee = _context.Employees.Find(id);
+            if (employee == null)
+            {
+                throw new Exception("Employee not found");
+            }
+                employee.ManagerId = employeeDTO.ManagerId;
+                employee.FirstName = employeeDTO.FirstName;
+                employee.LastName = employeeDTO.LastName;
+                employee.Birthday = employeeDTO.Birthday;
+                employee.HireDate = employeeDTO.HireDate;
+                employee.PhoneNumber = employeeDTO.PhoneNumber;
+                employee.AddressLine1 = employeeDTO.AddressLine1;
+                employee.City = employeeDTO.City;
+                employee.State = employeeDTO.State;
+                employee.ZipCode = employeeDTO.ZipCode;
+                employee.Email = employeeDTO.Email;
+                employee.PtoLeaveHours = employeeDTO.PtoLeaveHours;
+                employee.ReqPtoLeaveHours = employeeDTO.ReqPtoLeaveHours;
+                employee.FloatingHolidayHours = employeeDTO.FloatingHolidayHours;
+                employee.ReqFloatingHolidayHours = employeeDTO.ReqFloatingHolidayHours;
+                employee.IsManager = employeeDTO.IsManager;
+                employee.IsAdmin = employeeDTO.IsAdmin;
+                _context.SaveChanges();
+                return employeeDTO;
+        }
+
+        //Delete Employee
+        public void DeleteEmployee(int id)
+        {
+            var employee = _context.Employees.Find(id);
+            if (employee == null)
+            {
+                throw new Exception("Employee not found");
+            }
+            _context.Employees.Remove(employee);
+            _context.SaveChanges();
         }
 
     }
