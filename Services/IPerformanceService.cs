@@ -11,6 +11,8 @@ namespace Capstone.Services
         IEnumerable<PerformanceDTO> GetAllPerformanceReviews();
         Performance AddPerformanceReview(PerformanceDTO performanceDTO);
         PerformanceDTO UpdatePerformance(int performanceId, PerformanceDTO updatedPerformanceDTO);
+
+        PerformanceDTO UpdatePerformanceReviewByEmployeeIdAndReviewPeriod(int employeeId, string reviewPeriod, PerformanceDTO updatedPerformanceDTO);
         void DeletePerformance(int performanceId);
     }
 

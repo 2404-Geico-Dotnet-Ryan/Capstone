@@ -81,6 +81,33 @@ namespace Capstone.Services
             return performanceDTO;
         }
 
+        // Update performance review by Manager- retrieve review by Employee ID and Review Period
+
+        public PerformanceDTO UpdatePerformanceReviewByEmployeeIdAndReviewPeriod (int employeeId, string reviewPeriod, PerformanceDTO updatedPerformanceDTO)
+        {
+            var performance = _context.Performances
+                .Include(p => p.Employee)
+                .FirstOrDefault(P => P.EmployeeId == employeeId && P.ReviewPeriod == reviewPeriod);
+            var employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == updatedPerformanceDTO.EmployeeId);
+            
+            if (performance == null)
+            {
+                return null;
+            }
+            performance.ReviewPeriod = updatedPerformanceDTO.ReviewPeriod;
+            performance.Achievements = updatedPerformanceDTO.Achievements;
+            performance.ImprovementAreas = updatedPerformanceDTO.ImprovementAreas;
+            performance.TotalReviewScore = updatedPerformanceDTO.TotalReviewScore;
+            performance.IsCompletedPA = updatedPerformanceDTO.IsCompletedPA;
+            performance.IsCompletedReview = updatedPerformanceDTO.IsCompletedReview;
+            performance.Employee = employee;
+
+            _context.Performances.Update(performance);
+            _context.SaveChanges();
+            return updatedPerformanceDTO;
+
+        }
+
         // Helper method to convert Performance to PerformanceDTO
         private PerformanceDTO ConvertToDTO(Performance performance)
         {

@@ -54,6 +54,14 @@ namespace Capstone.Controllers
             return Ok(updatedPerformance);
         }
 
+        [HttpPut("{employeeId}/{reviewPeriod}")]
+
+        public ActionResult<PerformanceDTO> UpdatePerformanceByEmployee(int empoyeeId, string reviewPeriod, PerformanceDTO updatedPerformance)
+        {
+            _performanceService.UpdatePerformanceReviewByEmployeeIdAndReviewPeriod(empoyeeId, reviewPeriod, updatedPerformance);
+            return Ok(updatedPerformance);
+        }
+
         //tested in swagger, passing
         [HttpDelete("{performanceId}")]
         public IActionResult DeletePerformance(int performanceId)
