@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from "../../Images/logo2.png";
 import "./Nav.css";
 
- 
+/*
+Is it possible to display a welcome <User> message in the navbar???
+*/
+
 function NavBar() {
   const [useState] = React.useState(false);
   return (
@@ -23,7 +26,7 @@ function NavBar() {
               {" "}
               <Link to="login">
                 {" "}
-                 Login{" "}
+                 View Profile{" "}
               </Link>
             </li>
 
@@ -75,14 +78,21 @@ function NavBar() {
           <ul className="dropdown-content">
             <li>
               <Link to="Admin">
-                 Admin
-                Page{" "}
+                Create
+                Profile{" "}
               </Link>{" "}
             </li>
             <li>
               <Link to="Reporting">
              {" "}
-                Reporting{" "}
+                Delete
+                Profile{" "}
+              </Link>{" "}
+            </li>
+            <li>
+              <Link to="Admin">
+                Update
+                Profile{" "}
               </Link>{" "}
             </li>
           </ul>
