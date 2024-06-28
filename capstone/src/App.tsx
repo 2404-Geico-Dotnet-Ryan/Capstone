@@ -5,6 +5,8 @@ import UserProfileComponent from './Components/UserProfileComponent/UserProfileC
 import { UserContext } from './context/UserContext';
 import NavBar from './Components/NavBar/NavBar';
 import LeaveComponent from './Components/LeaveComponent/LeaveComponent';
+import GoalsComponent from './Components/GoalsComponent/GoalsComponent';
+import PerformanceComponent from './Components/PerformanceComponent/PerformanceComponent';
 
 function App() {
   /*
@@ -21,6 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginComponent setUser={setUser}/>}/>
           <Route path="/" element={<LeaveComponent/>}/>
+          <Route path="/performance" element={<PerformanceComponent/>}></Route> 
+          <Route path="/goals" element={<GoalsComponent/>}></Route>
         </Routes>
       </UserContext.Provider>
     </div>

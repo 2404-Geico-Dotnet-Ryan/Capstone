@@ -69,6 +69,11 @@ function NavBar() {
                  Goals{" "}
               </Link>{" "}
             </li>
+            <li>
+              <Link to="Performance">
+                 Performance Review{" "}
+              </Link>{" "}
+            </li>
           </ul>
         </li>
 
