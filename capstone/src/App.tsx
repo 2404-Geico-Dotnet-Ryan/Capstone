@@ -4,6 +4,7 @@ import LoginComponent, { User } from './Components/LoginComponent/LoginComponent
 import UserProfileComponent from './Components/UserProfileComponent/UserProfileComponent';
 import { UserContext } from './context/UserContext';
 import NavBar from './Components/NavBar/NavBar';
+import LeaveComponent from './Components/LeaveComponent/LeaveComponent';
 
 function App() {
   /*
@@ -19,6 +20,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<LoginComponent setUser={setUser}/>}/>
+          <Route path="/" element={<LeaveComponent/>}/>
         </Routes>
       </UserContext.Provider>
     </div>
