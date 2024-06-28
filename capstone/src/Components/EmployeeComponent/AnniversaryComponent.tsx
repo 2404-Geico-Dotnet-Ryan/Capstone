@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 
-function EmployeeComponent({employee, key}: {employee: any, key: number}) {
+function AnniversaryComponent({employee, key}: {employee: any, key: number}) {
   
   // const birthday = employee.birthday;
   // let month = birthday.getMonth();
@@ -22,9 +22,9 @@ function EmployeeComponent({employee, key}: {employee: any, key: number}) {
 
   return (
     <div key={key}>
-        <p>{employee.firstName} {employee.lastName} {employee.birthday} </p>       
+        <p>{employee.firstName} {employee.lastName} {employee.hireDate} </p>       
     </div>
   )
 }
 
-export default EmployeeComponent
+export default AnniversaryComponent
