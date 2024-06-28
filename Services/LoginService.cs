@@ -38,7 +38,7 @@ namespace Capstone.Services
 
         private bool ValidateNewLogin(LoginDTO loginDto)
         {
-            if(loginDto.UserName.Trim().Length == 0)
+            if (loginDto.UserName.Trim().Length == 0)
             {
                 return false;
             }
@@ -47,10 +47,24 @@ namespace Capstone.Services
 
         public void DeleteLogin(int LoginId)
         {
-            var login = _context.Logins.FirstOrDefault(l => l.LoginId == LoginId);
+            try
+            {
 
-            _context.Logins.Remove(login);
-            _context.SaveChanges();
+                var login = _context.Logins.FirstOrDefault(l => l.LoginId == LoginId);
+                if (login == null)
+                {
+                    throw new Exception($" Login with ID {LoginId} not found");
+                }
+
+                _context.Logins.Remove(login);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"An error occured while deleting the login: {ex.Message}");
+
+                throw new Exception("An error occured while deleting the login. Please try again later.", ex);
+            }
         }
 
         public IEnumerable<LoginDTO> GetAllLogins()
@@ -72,8 +86,8 @@ namespace Capstone.Services
             Random encrypt = new Random();
             string letters = "************ABCDE12345";
             string hidePassWord = "";
-            
-            for (int i = 0; i<=8; i++)
+
+            for (int i = 0; i <= 8; i++)
             {
                 int pick = encrypt.Next(letters.Length);
                 hidePassWord += letters[pick];
@@ -83,8 +97,9 @@ namespace Capstone.Services
 
         public LoginDTO GetLoginById(int LoginId)
         {
-             var login = _context.Logins.Find(LoginId);
-            var loginDto = new LoginDTO{
+            var login = _context.Logins.Find(LoginId);
+            var loginDto = new LoginDTO
+            {
                 UserName = login.UserName,
                 Password = login.Password,
                 EmployeeId = login.EmployeeId
@@ -103,11 +118,12 @@ namespace Capstone.Services
                 return null; // Indicate failure to find the user
             }
 
-            var loginDto = new LoginDTO{
+            var loginDto = new LoginDTO
+            {
                 UserName = login.UserName,
                 Password = login.Password,
                 EmployeeId = login.EmployeeId,
-                
+
             };
 
             return loginDto;
