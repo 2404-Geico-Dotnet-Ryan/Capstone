@@ -11,8 +11,8 @@ namespace Capstone.Models
         public int GoalScore { get; set; }
         public string? ManagerFeedback { get; set; }
 
-        // This establishes the "one to one" relationship 
-        // One Performance to One Employee  
+        // This establishes the "one to many" relationship 
+        // One Performance to many goals  
         public Performance Performance { get; set; }
         
         /* NO Argurments Constructor*/

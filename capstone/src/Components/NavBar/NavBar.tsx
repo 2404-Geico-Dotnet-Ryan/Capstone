@@ -12,7 +12,7 @@ function NavBar() {
   return (
   <>
   <div id="header">
-    <Link id="login-link" to={useState ? "/WelcomeLoggedInUser" : "/Login"}>
+    <Link id="login-link" to={useState ? "/WelcomeLoggedInUser" : "/LandingPage"}>
       <img src={logo} alt="Logo" id="header-logo" />
     </Link>
 
@@ -67,6 +67,11 @@ function NavBar() {
             <li>
               <Link to="Goals">
                  Goals{" "}
+              </Link>{" "}
+            </li>
+            <li>
+              <Link to="Performance">
+                 Performance Review{" "}
               </Link>{" "}
             </li>
           </ul>
