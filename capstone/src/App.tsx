@@ -23,10 +23,14 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<LoginComponent setUser={setUser}/>}/>
+<<<<<<< LeaveReqTable
+          <Route path="/leave" element={<LeaveComponent/>}/>
+=======
           <Route path="/" element={<LeaveComponent/>}/>
           <Route path="/performance" element={<PerformanceComponent/>}></Route> 
           <Route path="/goals" element={<GoalsComponent/>}></Route>
           <Route path="/LandingPage" element={<LandingPageComponent/>}/>
+>>>>>>> main
         </Routes>
       </UserContext.Provider>
     </div>
