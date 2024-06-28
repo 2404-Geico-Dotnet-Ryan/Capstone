@@ -19,7 +19,7 @@ namespace Capstone.Services
 
 
         // POST Performance Review
-        public Performance AddPeformanceReview(PerformanceDTO performanceDTO)
+        public Performance AddPerformanceReview(PerformanceDTO performanceDTO)
         {
             var employee = _context.Employees.FirstOrDefault(e => e.EmployeeId == performanceDTO.EmployeeId);
 
@@ -155,14 +155,8 @@ namespace Capstone.Services
             return updatedPerformanceDTO;
         }
 
-                public Performance AddPerformance(PerformanceDTO performanceDTO)
-        {
-            throw new NotImplementedException();
-        }
 
-                public IEnumerable<PerformanceDTO> GetAllPerformances()
-        {
-            throw new NotImplementedException();
-        }
-    }
+
+
+}
 }
