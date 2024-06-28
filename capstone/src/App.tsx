@@ -20,7 +20,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<LoginComponent setUser={setUser}/>}/>
-          <Route path="/" element={<LeaveComponent/>}/>
+          <Route path="/leave" element={<LeaveComponent/>}/>
         </Routes>
       </UserContext.Provider>
     </div>
