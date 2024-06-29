@@ -12,103 +12,110 @@ namespace Capstone.Controllers
     [Route("[controller]")]
     public class LeaveRequestController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public LeaveRequestController(AppDbContext context)
+        private readonly ILeaveRequestService _leaveRequstService;
+
+        public LeaveRequestController(ILeaveRequestService leaveRequstService)
         {
-            _context = context;
+            _leaveRequstService = leaveRequstService;
         }
 
         [HttpPost]
-        public LeaveRequestDTO CreateLeaveRequest(LeaveRequestDTO leaveRequestDTO)
+        public ActionResult<LeaveRequestDTO> CreateLeaveRequest(LeaveRequestDTO leaveRequestDTO)
         {
-            var leaveRequest = new LeaveRequest
+            try
             {
-                LeaveId = leaveRequestDTO.LeaveId,
-                EmployeeId = leaveRequestDTO.EmployeeId,
-                ManagerId = leaveRequestDTO.ManagerId,
-                LeaveType = leaveRequestDTO.LeaveType,
-                LeaveStartDate = leaveRequestDTO.LeaveStartDate,
-                LeaveEndDate = leaveRequestDTO.LeaveEndDate,
-                HoursTaken = leaveRequestDTO.HoursTaken,
-                IsApproved = leaveRequestDTO.IsApproved
-            };
-            _context.LeaveRequests.Add(leaveRequest);
-            _context.SaveChanges();
-            return leaveRequestDTO;
+                var leaveRequest = _leaveRequstService.CreateLeaveRequest(leaveRequestDTO);
+                return Ok (leaveRequest);
+            }
+            catch (Exception e)
+            {
+                return Conflict(e.Message);
+            }
         }
 
-        [HttpDelete("{LeaveId}")]
-        public void DeleteLeaveRequest(int LeaveId)
+        [HttpDelete("{leaveId}")]
+        public ActionResult DeleteLeaveRequest(int leaveId)
         {
-            var leaveRequest = _context.LeaveRequests.FirstOrDefault(l => l.LeaveId == LeaveId);
-            if (leaveRequest != null)
-            {
-                _context.LeaveRequests.Remove(leaveRequest);
-                _context.SaveChanges();
+            try {
+                _leaveRequstService.DeleteLeaveRequest(leaveId);
+                return NoContent();
             }
-            else
-            {
-                throw new Exception("Leave request not found");
-            }
+           catch (Exception e)
+           {
+                if (e.Message == "Leave request not found")
+                {
+                    return NotFound(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+           }
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<LeaveRequestDTO>> GetLeaveRequests()
         {
-            var leaveRequest = _context.LeaveRequests.Select(l => new LeaveRequestDTO
-            {
-                LeaveId = l.LeaveId,
-                EmployeeId = l.EmployeeId,
-                ManagerId = l.ManagerId,
-                LeaveType = l.LeaveType,
-                LeaveStartDate = l.LeaveStartDate,
-                LeaveEndDate = l.LeaveEndDate,
-                HoursTaken = l.HoursTaken,
-                IsApproved = l.IsApproved
-            }).ToList();
-            return leaveRequest;
+            return Ok(_leaveRequstService.GetAllLeave());
         }
 
-        [HttpGet("{LeaveId}")]
-        public ActionResult<LeaveRequestDTO> GetLeaveRequest(int LeaveId)
+        [HttpGet("{leaveId}")]
+        public ActionResult<LeaveRequestDTO> GetLeaveRequest(int leaveId)
         {
-            var leaveRequest = _context.LeaveRequests.Select(l => new LeaveRequestDTO
-            {
-                LeaveId = l.LeaveId,
-                EmployeeId = l.EmployeeId,
-                ManagerId = l.ManagerId,
-                LeaveType = l.LeaveType,
-                LeaveStartDate = l.LeaveStartDate,
-                LeaveEndDate = l.LeaveEndDate,
-                HoursTaken = l.HoursTaken,
-                IsApproved = l.IsApproved
-            }).FirstOrDefault(l => l.LeaveId == LeaveId);
-            if (leaveRequest == null)
-            {
-                return NotFound();
-
+            try {
+                var leaveRequest = _leaveRequstService.GetLeaveById(leaveId);
+                return Ok(leaveRequest);
             }
-            return leaveRequest;
+           catch (Exception e)
+           {
+                if (e.Message == "Leave request not found")
+                {
+                    return NotFound(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+           }
         }
-        [HttpPut("{LeaveId}")]
-        public ActionResult<LeaveRequestDTO> UpdateLeaveRequest(int LeaveId, LeaveRequestDTO leaveRequestDTO)
+
+        [HttpPut("{leaveId}")]
+        public ActionResult<LeaveRequestDTO> UpdateLeaveRequest(int leaveId, LeaveRequestDTO leaveRequestDTO)
         {
-            var leaveRequest = _context.LeaveRequests.FirstOrDefault(l => l.LeaveId == LeaveId);
-            if (leaveRequestDTO == null)
+            try
             {
-                return NotFound();
+                var leaveRequest = _leaveRequstService.UpdateLeaveRequest(leaveId, leaveRequestDTO);
+                return Ok(leaveRequest);
             }
-                leaveRequest.LeaveId = leaveRequestDTO.LeaveId;
-                leaveRequest.EmployeeId = leaveRequestDTO.EmployeeId;
-                leaveRequest.ManagerId = leaveRequestDTO.ManagerId;
-                leaveRequest.LeaveType = leaveRequestDTO.LeaveType;
-                leaveRequest.LeaveStartDate = leaveRequestDTO.LeaveStartDate;
-                leaveRequest.LeaveEndDate = leaveRequestDTO.LeaveEndDate;
-                leaveRequest.HoursTaken = leaveRequestDTO.HoursTaken;
-                leaveRequest.IsApproved = leaveRequestDTO.IsApproved;
-            _context.SaveChanges();
-            return leaveRequestDTO;
+            catch (Exception e)
+           {
+                if (e.Message == "Leave request not found")
+                {
+                    return NotFound(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+           }
 
         }
+
+        //URI to send e-mail after Employee request leave
+        [HttpPost("Employee/{leaveId}")]
+        public async Task<ActionResult> SendLeaveRequestEmail(int leaveId)
+        {   
+            EmailService.ToManagerLeaveRequestEmailDTO(await _leaveRequstService.BuildLeaveRequestDTO(leaveId));
+            return Ok();
+        }
+
+        //URI to send e-mail after Manager reviews leave
+        [HttpPost("Manager/{leaveId}")]
+        public async Task<ActionResult> SendLeaveReviewedEmail(int leaveId)
+        {   
+            EmailService.ToEmployeeLeaveReviewEmailDTO(await _leaveRequstService.BuildLeaveRequestDTO(leaveId));
+            return Ok();
+        }
+        
     }
 }

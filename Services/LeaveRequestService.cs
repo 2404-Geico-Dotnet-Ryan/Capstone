@@ -18,7 +18,9 @@ namespace Capstone.Services
         public IEnumerable<LeaveRequestDTO> GetAllLeave()
         {
             var leaveRequests = _context.LeaveRequests.ToList();
+
             List<LeaveRequestDTO> leaveRequestDTOs = new List<LeaveRequestDTO>();
+           
             foreach (var leaveRequest in leaveRequests)
             {
                 leaveRequestDTOs.Add(new LeaveRequestDTO
@@ -59,9 +61,13 @@ namespace Capstone.Services
             };
         }
 
-        public LeaveRequest CreateLeaveRequest(LeaveRequestDTO leaveRequestDTO)
+        public LeaveRequestDTO CreateLeaveRequest(LeaveRequestDTO leaveRequestDTO)
         {
             if (leaveRequestDTO == null)
+            {
+                throw new Exception("Leave request cannot be null");
+            }
+            else
             {
                 var leaveRequest = new LeaveRequest
                 {
@@ -75,16 +81,14 @@ namespace Capstone.Services
                     Status = leaveRequestDTO.Status,
                     IsApproved = leaveRequestDTO.IsApproved
                 };
+
                 _context.LeaveRequests.Add(leaveRequest);
                 _context.SaveChanges();
-                return leaveRequest;
-            }
-            else
-            {
-                throw new Exception("Leave request cannot be null");
+                return leaveRequestDTO;
             }
         }
-        public void UpdateLeaveRequest(int leaveId, LeaveRequestDTO leaveRequestDTO)
+
+        public LeaveRequestDTO UpdateLeaveRequest(int leaveId, LeaveRequestDTO leaveRequestDTO)
         {
             var leaveRequest = _context.LeaveRequests.Find(leaveId);
             if (leaveRequest == null)
@@ -103,11 +107,13 @@ namespace Capstone.Services
 
             _context.LeaveRequests.Update(leaveRequest);
             _context.SaveChanges();
+            
+            return leaveRequestDTO;
         }
 
-        public void DeleteLeaveRequest(int LeaveId)
+        public void DeleteLeaveRequest(int leaveId)
         {
-            var leaveRequest = _context.LeaveRequests.FirstOrDefault(g => g.LeaveId == LeaveId);
+            var leaveRequest = _context.LeaveRequests.FirstOrDefault(g => g.LeaveId == leaveId);
             if (leaveRequest != null)
             {
                 _context.LeaveRequests.Remove(leaveRequest);
@@ -119,8 +125,31 @@ namespace Capstone.Services
             }
         }
 
+        public async Task<LeaveEmailDTO> BuildLeaveRequestDTO(int leaveId)
+        {   
+            // Build new LeaveEmailDTO object
+            LeaveEmailDTO emailData = new();
 
+            // Read tables to gather data needed to send out an email
+            LeaveRequest leaveData = await _context.LeaveRequests.FirstAsync(l => l.LeaveId == leaveId);
+            Employee employeeData = await _context.Employees.FirstAsync(e => e.EmployeeId == leaveData.EmployeeId);
+            Manager managerData = await _context.Managers.FirstAsync(e => e.ManagerId == leaveData.ManagerId);
+            
+            // Add data into the LeaveEmailDTO so it can be sent back and used to send out email
+            emailData.LeaveType =  leaveData.LeaveType;
+            emailData.LeaveStartDate =  leaveData.LeaveStartDate;
+            emailData.LeaveEndDate =  leaveData.LeaveEndDate;
+            emailData.Status = leaveData.Status;
 
+            emailData.EmployeeFirstName = employeeData.FirstName;
+            emailData.EmployeeLastName = employeeData.LastName;
+            emailData.EmployeeEmail = employeeData.Email;
 
+            emailData.ManagerFirstName = managerData.FirstName;
+            emailData.ManagerLastName = managerData.LastName;
+            emailData.ManagerEmail = managerData.Email;
+
+            return emailData;
+        }
     }
 }

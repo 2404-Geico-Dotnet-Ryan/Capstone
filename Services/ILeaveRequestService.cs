@@ -8,9 +8,9 @@ namespace Capstone.Services
     {
         IEnumerable<LeaveRequestDTO> GetAllLeave();
         LeaveRequestDTO GetLeaveById(int LeaveId);
-
-        LeaveRequest CreateLeaveRequest(LeaveRequestDTO leaveRequestDTO);
-        void UpdateLeaveRequest(int leaveId, LeaveRequestDTO leaveRequestDTO);
-        void DeleteLeaveRequest(int LeaveId);
+        LeaveRequestDTO CreateLeaveRequest(LeaveRequestDTO leaveRequestDTO);
+        LeaveRequestDTO UpdateLeaveRequest(int leaveId, LeaveRequestDTO leaveRequestDTO);
+        void DeleteLeaveRequest(int leaveId);
+        Task<LeaveEmailDTO> BuildLeaveRequestDTO(int leaveId);
     }
 }

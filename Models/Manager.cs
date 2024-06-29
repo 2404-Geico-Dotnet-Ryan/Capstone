@@ -6,6 +6,7 @@ namespace Capstone.Models
         public string? Department { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public string? Email { get; set; }
 
         // This establishes the "one to many" relationship 
         // One Manager to Many Employees 
@@ -18,12 +19,13 @@ namespace Capstone.Models
         }
 
         /* FULL Argurments Constructor */
-        public Manager(int managerId, string department, string firstName, string lastName)
+        public Manager(int managerId, string department, string firstName, string lastName, string email)
         {
             ManagerId = managerId;
             Department = department;
             FirstName = firstName;
             LastName = lastName;
+            Email = email;
         }
     }
 }
