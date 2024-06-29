@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import EmployeeComponent from '../EmployeeComponent/EmployeeComponent';
 import AnniversaryComponent from '../EmployeeComponent/AnniversaryComponent';
+import EmployeeBirthdaysComponent from '../EmployeeComponent/EmployeeBirthdaysComponent';
 // import axios from 'axios';
 
 function LandingPageComponent() {
@@ -20,6 +21,8 @@ function LandingPageComponent() {
   //This is for getting the current month Birthdays from the DB//
 
   let [employees, setEmployees] = useState<any[] | undefined>(undefined);
+  const employeesWithBirthdaysInMonth = employees?.filter(employee => new Date(employee.birthday).getMonth() === month);
+  const employeesWithAnniversariesInMonth = employees?.filter(employee => new Date(employee.hireDate).getMonth() === month);
 
   useEffect(() => {
     async function getEmployees() {
@@ -35,7 +38,7 @@ function LandingPageComponent() {
     getEmployees();
   }, []);
 
-
+  console.log(employees);
 
   return (
     <>
@@ -43,31 +46,19 @@ function LandingPageComponent() {
         <h1>Upcoming Events...</h1>
       </div>
 
-      <div>
-        <div id="Birthdays">
-          <h2>{monthname} Birthdays</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '50px', marginTop: '150px'}}>
+        <div id="Birthdays" style={{ flexGrow: '1'}}>
+          <h2 style={{ textAlign: 'center' }}>{monthname} Birthdays</h2>
           <div>
-            {
-              employees?.map((obj, employeeId) => {
-                return (
-                  <EmployeeComponent employee={obj} key={employeeId} />
-                )
-              })
-            }
+            <EmployeeBirthdaysComponent employees={employeesWithBirthdaysInMonth || []}/>
           </div>
 
 
         </div>
-        <div id="Anniversaries">
-          <h2>{monthname} Anniversaries</h2>
+        <div id="Anniversaries" style={{ flexGrow: '1'}}>
+          <h2 style={{ textAlign: 'center'}}>{monthname} Anniversaries</h2>
           <div>
-            {
-              employees?.map((obj, employeeId) => {
-                return (
-                  <AnniversaryComponent employee={obj} key={employeeId} />
-                )
-              })
-            }
+           <AnniversaryComponent employees={employeesWithAnniversariesInMonth || []} />
           </div>
         </div>
       </div>
