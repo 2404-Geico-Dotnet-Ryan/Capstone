@@ -23,6 +23,7 @@ namespace Capstone.Services
                 Department = m.Department,
                 FirstName = m.FirstName,
                 LastName = m.LastName,
+                Email = m.Email
                 
             }).ToList();
         }
@@ -41,6 +42,7 @@ namespace Capstone.Services
                 Department = manager.Department,
                 FirstName = manager.FirstName,
                 LastName = manager.LastName,
+                Email = manager.Email
             };
         }
 
@@ -53,6 +55,7 @@ namespace Capstone.Services
                 Department =managerDTO.Department,
                 FirstName = managerDTO.FirstName,
                 LastName = managerDTO.LastName,
+                Email = managerDTO.Email
             };
             _context.Managers.Add(manager);
             _context.SaveChanges();
@@ -72,6 +75,7 @@ namespace Capstone.Services
                 manager.Department =managerDTO.Department;
                 manager.FirstName = managerDTO.FirstName;
                 manager.LastName = managerDTO.LastName;
+                manager.Email = managerDTO.Email;
                 
                 _context.SaveChanges();
                 return managerDTO;

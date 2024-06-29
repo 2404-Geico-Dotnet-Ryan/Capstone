@@ -95,7 +95,20 @@ namespace Capstone.DTOs
         public string? Department { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public string? Email { get; set; }
       
     }
 
+    public class LeaveEmailDTO{
+        public string? LeaveType { get; set; }
+        public DateTime LeaveStartDate { get; set; }
+        public DateTime LeaveEndDate { get; set; }
+        public string? Status { get; set; }
+        public string? EmployeeFirstName {get; set;}
+        public string? EmployeeLastName {get; set;}
+        public string? EmployeeEmail {get; set;}
+        public string? ManagerFirstName {get; set;}
+        public string? ManagerLastName {get; set;} 
+        public string? ManagerEmail {get; set;}
+}
 }
