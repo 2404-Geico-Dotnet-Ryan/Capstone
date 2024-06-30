@@ -9,6 +9,7 @@ import GoalsComponent from './Components/GoalsComponent/GoalsComponent';
 import PerformanceComponent from './Components/PerformanceComponent/PerformanceComponent';
 import LandingPageComponent from './Components/LandingPageComponent/LandingPageComponent';
 
+
 function App() {
   /*
     By using UserContext.Provider, anything inside of it can reference the user with useContext anywhere without having to provide it with props
