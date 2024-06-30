@@ -1,4 +1,55 @@
-.grid-container {
+.goalsComponent {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  padding: 30px;
+}
+
+.employeeYearContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 75px;
+  }
+  .employeeYearContainer .header {
+    font-size: 30px;
+    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: solid darkblue; 
+    border-radius: 10px;
+    padding-inline-start: 50px;
+    background-color: rgb(150, 199, 248)
+  }
+  .employeeYearContainer .profile {
+    height: 100%;
+    justify-content: left;
+    align-items: left;
+    padding-left: 50px;
+
+  }
+  
+.rightSide {
+  display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+.rightSide .selectYear {
+    font-size: 20px;
+    display: inline-block;
+    position: center;
+    width: 50%;
+}
+.rightSide .submitButton {
+    font-size: 20px;
+    position: center;
+}
+
+/* .grid-container {
   display: grid;
   grid-template-areas:
     "header header header header"
@@ -44,4 +95,4 @@
 .submitButton {
   font-size: 20px;
   position: center;
-}
+} */
