@@ -1,0 +1,47 @@
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header header header"
+    "left left left right"
+    "left left left right";
+
+  grid-template-columns: auto 80px;
+  gap: 0px;
+  background-color: #2196f3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: #ffffffcc;
+  font-size: 10px;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.header {
+  grid-area: header;
+  background-color: blue;
+  padding: 30px;
+  text-align: center;
+}
+.left {
+  grid-area: left;
+  text-align: left;
+  text-indent: 50px;
+}
+
+.right {
+  grid-area: right;
+  text-align: center;
+}
+
+.selectYear {
+  font-size: 20px;
+  display: inline-block;
+  position: center;
+  width: 50%;
+}
+
+.submitButton {
+  font-size: 20px;
+  position: center;
+}
