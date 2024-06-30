@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function PerformanceComponent() {
+  const BASE_URL = "http://localhost:5074";
+  const [employees, SetEmployees] = useState([]);
+
+  useEffect(() => {
+    //Fetch data
+    fetch(`${BASE_URL}/Employee`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch employees');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Fetched employees:', data);
+      SetEmployees(data)
+    })
+    .catch(error => console.error('Error fetching data:', error))
+  }, []);
+  
   return (
   <div className='table-wrapper'>
     <table className='table'>
