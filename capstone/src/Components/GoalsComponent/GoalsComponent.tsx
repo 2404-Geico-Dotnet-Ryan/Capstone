@@ -1,7 +1,7 @@
 import React from "react";
 import "./GoalsComponent.css";
-import "./EmployeeProfile";
-import EmployeeProfile from "./EmployeeProfile";
+import "../../Helpers/EmployeeProfile";
+import EmployeeProfile from "../../Helpers/EmployeeProfile";
 
 function GoalsComponent() {
   return (
