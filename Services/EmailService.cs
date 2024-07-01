@@ -29,10 +29,10 @@ class EmailService
         }
     }
 
-    /******************************************/
-    /* Create e-mail to send to Employee once */  
-    /* Manager completes the approval process */
-    /******************************************/
+    /***********************************************/
+    /* Create e-mail to send to Employee once      */  
+    /* Manager completes the leave request process */
+    /***********************************************/
     public static void ToEmployeeLeaveReviewEmailDTO(LeaveEmailDTO leaveEmailDTO)
     {
         string subject = $"Your recently submitted leave request has been {leaveEmailDTO.Status}";
@@ -60,5 +60,53 @@ class EmailService
             "This is an automated email. Please do not respond.";
         
         SendEmail(".Net WorkForce", "test@geico.com", leaveEmailDTO.ManagerFirstName+" "+leaveEmailDTO.ManagerLastName, leaveEmailDTO.ManagerEmail, subject, body);
+    }
+
+    /****************************************************/
+    /* Create e-mail to send to Employee once           */  
+    /* Manager completes the performance review process */
+    /****************************************************/
+    public static void ToEmployeePerformanceEmailDTO(LeaveEmailDTO leaveEmailDTO)
+    {
+        string subject = $"Your Manager has completed your performance review";
+
+        string body = $"Hello {leaveEmailDTO.EmployeeFirstName+" "+leaveEmailDTO.EmployeeLastName}"
+            + Environment.NewLine + Environment.NewLine +
+            $"Your performance review has been completed by {leaveEmailDTO.ManagerFirstName}."
+            + Environment.NewLine + Environment.NewLine +
+            "This is an automated email. Please do not respond.";
+
+        SendEmail(".Net WorkForce", "test@geico.com", leaveEmailDTO.EmployeeFirstName+" "+leaveEmailDTO.EmployeeLastName, leaveEmailDTO.EmployeeEmail, subject, body);
+    }
+
+    /*****************************************************/
+    /* Create e-mail to send to Manager once             */  
+    /* Employee completes the performance review process */
+    /*****************************************************/
+    public static void ToManagerPerformanceEmailDTO(LeaveEmailDTO leaveEmailDTO)
+    {
+        string subject = "You have a new employee performance form to review";
+        string body =  $"Hello {leaveEmailDTO.ManagerFirstName+" "+leaveEmailDTO.ManagerLastName},"
+            + Environment.NewLine + Environment.NewLine +
+            $"{leaveEmailDTO.EmployeeFirstName} {leaveEmailDTO.EmployeeLastName} has completed their protion of the performance review form.  Please complete your portion of the form in .Net WorkForce."
+            + Environment.NewLine + Environment.NewLine +
+            "This is an automated email. Please do not respond.";
+        
+        SendEmail(".Net WorkForce", "test@geico.com", leaveEmailDTO.ManagerFirstName+" "+leaveEmailDTO.ManagerLastName, leaveEmailDTO.ManagerEmail, subject, body);
+    }
+
+    /***************************************************************/
+    /* Create e-mail to send to Employee to reset a login password */  
+    /***************************************************************/
+    public static void ToResetPasswordEmailDTO(LeaveEmailDTO leaveEmailDTO)
+    {
+        string subject = "You have requested to reset your password";
+        string body =  $"Hello {leaveEmailDTO.EmployeeFirstName+" "+leaveEmailDTO.EmployeeLastName}"
+            + Environment.NewLine + Environment.NewLine +
+            $"A request to reset your password has been made. If you did not make the request, please contact the .Net WorkForce IT department immediately."
+            + Environment.NewLine + Environment.NewLine +
+            "This is an automated email. Please do not respond.";
+        
+        SendEmail(".Net WorkForce", "test@geico.com", leaveEmailDTO.EmployeeFirstName+" "+leaveEmailDTO.EmployeeLastName, leaveEmailDTO.EmployeeEmail, subject, body);
     }
 }

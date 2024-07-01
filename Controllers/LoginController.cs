@@ -62,5 +62,13 @@ namespace Capstone.Controllers
             }
             return login;
         }
+
+        //URI to send e-mail after Employee request password be reset
+        [HttpPost("{userName}")]
+        public async Task<ActionResult> SendPasswordResetEmail(string userName)
+        {   
+            EmailService.ToResetPasswordEmailDTO(await _loginService.BuildPasswordResetDTO(userName));
+            return Ok();
+        }
     }
 }

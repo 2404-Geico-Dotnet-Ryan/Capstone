@@ -42,10 +42,25 @@ namespace Capstone.Data
             .HasForeignKey(pr => pr.EmployeeId);
 
             /* Settings for the "1 Manger to Many Employee" relationship*/
+            //modelBuilder.Entity<Manager>()
+   
+            //.HasMany(mg => mg.Employee)   //7/1
+            //.HasMany(mg => mg.Reports)  //7/1
+           // .WithOne(em => em.Manager)
+           // .HasForeignKey(em => em.ManagerId);    
+
+
             modelBuilder.Entity<Manager>()
-            .HasMany(mg => mg.Employees)
+            .HasMany(mg => mg.Reports)
             .WithOne(em => em.Manager)
-            .HasForeignKey(em => em.ManagerId);      
+            .HasForeignKey(em => em.ManagerId);
+
+            // modelBuilder.Entity<Manager>()
+            // //.HasMany(mg => mg.Employees)   //7/1
+            // .HasOne(mg => mg.Employee)  //7/1
+            // .WithOne()
+            // .HasForeignKey<Manager>(mg => mg.Email)
+            // .OnDelete(DeleteBehavior.NoAction);  //7/1 end 
 
             /* Settings for the "1 Performance to Many Goals" relationship*/
             modelBuilder.Entity<Performance>()

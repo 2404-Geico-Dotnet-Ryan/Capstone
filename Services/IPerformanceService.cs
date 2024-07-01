@@ -14,6 +14,8 @@ namespace Capstone.Services
 
         PerformanceDTO UpdatePerformanceReviewByEmployeeIdAndReviewPeriod(int employeeId, string reviewPeriod, PerformanceDTO updatedPerformanceDTO);
         void DeletePerformance(int performanceId);
+
+        Task<LeaveEmailDTO> BuildPerformanceRequestDTO(int leaveId);
     }
 
 

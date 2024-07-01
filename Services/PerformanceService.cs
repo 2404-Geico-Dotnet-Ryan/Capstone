@@ -182,7 +182,27 @@ namespace Capstone.Services
             return updatedPerformanceDTO;
         }
 
+        public async Task<LeaveEmailDTO> BuildPerformanceRequestDTO(int performanceId)
+        {   
+            // Build new LeaveEmailDTO object
+            LeaveEmailDTO emailData = new();
 
+            // Read tables to gather data needed to send out an email
+            Performance performanceData = await _context.Performances.FirstAsync(p => p.PerformanceId == performanceId);
+            Employee employeeData = await _context.Employees.FirstAsync(e => e.EmployeeId == performanceData.EmployeeId);
+            Manager managerData = await _context.Managers.FirstAsync(m => m.ManagerId == performanceData.ManagerId);
+            
+            // Add data into the LeaveEmailDTO so it can be sent back and used to send out email
+            emailData.EmployeeFirstName = employeeData.FirstName;
+            emailData.EmployeeLastName = employeeData.LastName;
+            emailData.EmployeeEmail = employeeData.Email;
+
+            emailData.ManagerFirstName = managerData.FirstName;
+            emailData.ManagerLastName = managerData.LastName;
+            emailData.ManagerEmail = managerData.Email;
+
+            return emailData;
+        }
 
 
 }

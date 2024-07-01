@@ -51,8 +51,15 @@ namespace Capstone.Controllers
         [HttpPost]
         public ActionResult<GoalsDTO> CreateGoal(GoalsDTO goalDTO)
         {
-            var goal = __goalService.CreateGoal(goalDTO);
-            return CreatedAtAction(nameof(GetGoal), new { id = goal.GoalId }, goal);
+            try {
+                var goal = __goalService.CreateGoal(goalDTO);
+                return Ok(goal);
+            }
+            catch (Exception e)
+           
+            {
+                return Conflict(e.Message);
+            }
         }
 
         [HttpPut("{goalId}")]
