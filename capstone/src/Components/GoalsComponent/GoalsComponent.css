@@ -30,9 +30,6 @@
   padding-top: 10px;
   background-color: #108afdb4;
   color: #fffbfb;
-  /* border-left: solid rgb(211, 216, 218);
-  border-right: solid rgb(211, 216, 218);
-  border-top: solid rgb(211, 216, 218); */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -40,8 +37,6 @@
   font-size: 18px;
   text-align: center;
   padding: 30px;
-  /* border-right: solid rgb(211, 216, 218);
-  border-bottom: solid rgb(211, 216, 218); */
   border-bottom-right-radius: 10px;
 }
 
@@ -69,8 +64,5 @@
   padding-right: 50px;
   padding-top: 25px;
   padding-bottom: 20px;
-  /* border-left: solid rgb(211, 216, 218);
-  border-right: solid rgb(211, 216, 218);
-  border-bottom: solid rgb(211, 216, 218); */
   border-bottom-left-radius: 10px;
 }
