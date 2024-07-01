@@ -13,63 +13,67 @@
     "header header"
     "employeeContainer selectYear"
     "employeeContainer submitButton";
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% auto;
   gap: 0px;
-  width: 75%;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  width: 60%;
+  border-collapse: collapse;
+  box-shadow: 0px 10px 10px #ccc;
+  border-radius: 10px;
 }
 
 .grid-container .header {
   grid-area: 1 / 1 / 2 / 3;
-  font-size: 25px;
-  font-weight: bold;
+  width: auto;
   justify-content: center;
-  padding-inline-start: 50px;
+  padding-inline-start: 20px;
   padding-top: 10px;
   background-color: #108afdb4;
-  color: ghostwhite;
-  border-left: solid rgb(211, 216, 218);
-  border-right: solid rgb(211, 216, 218);
-  border-top: solid rgb(211, 216, 218);
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  color: #fffbfb;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
 }
-.grid-container > .selectYear {
+.grid-container > .selectYearContainer {
+  margin: auto;
+  height: auto;
+  width: auto;
+  justify-content: center;
+  flex-direction: column;
   font-size: 18px;
-  text-align: center;
-  padding: 30px;
-  border-right: solid rgb(211, 216, 218);
-  border-bottom: solid rgb(211, 216, 218);
-  border-bottom-right-radius: 25px;
+  align-items: center;
+  /* padding-left: 20px; */
+  border-bottom-right-radius: 10px;
+
 }
 
 .submitButton {
   font-size: 16px;
-  padding: 10px;
-  margin: 20px;
-  background-color: #4ca5f8b4;
+  padding: 12px;
+  margin: 10px;
+  background-color: lightblue;
   border-radius: 10px;
-  color: white;
+  color: black;
   cursor: pointer;
-  border: solid rgb(189, 191, 192);
+  border: none;
+}
+.submitButton:hover {
+  background-color: #4ca5f8;
 }
 
 .grid-container > .employeeContainer {
   height: auto;
-  display: flex;
+  width: auto;
+  margin: auto;
   justify-content: center;
   flex-direction: column;
-  text-align: left;
-  padding-left: 100px;
-  padding-right: 50px;
+  text-align: center;
   padding-top: 25px;
   padding-bottom: 20px;
-  border-left: solid rgb(211, 216, 218);
-  border-right: solid rgb(211, 216, 218);
-  border-bottom: solid rgb(211, 216, 218);
-  border-bottom-left-radius: 25px;
+  border-bottom-left-radius: 10px;
 }
 
+@media (max-width: 600px) {
+  .grid-container {
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+}

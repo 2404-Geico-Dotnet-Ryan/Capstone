@@ -8,14 +8,15 @@ function GoalsComponent() {
     <>
       <div className="grid-container">
         <header className="header">
-          <h3>Goals</h3>
+          <h5>Goals</h5>
         </header>
         <div className="employeeContainer">
-        <div className="profile">
+        <div className="goalProfile">
           <EmployeeProfile />
         </div>
       </div>
-        <div className="selectYear">
+
+        <div className="selectYearContainer">
             <label htmlFor="reviewYear" style={{ padding: "10px", margin: "10px"}}> Select Review Year: </label>
             <select id="year" name="year" style={{ padding: "10px", margin: "1px"}}>
               <option value="pick">Select</option>
