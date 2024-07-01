@@ -1,5 +1,4 @@
 import React from 'react'
-import { PerformanceEmployeeList } from '../../Helpers/PerformanceEmployeeList';
 
 interface EmployeeItemProps {
   id: number;

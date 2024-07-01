@@ -1,7 +1,7 @@
 import React from "react";
 import EmployeeItem from "./EmployeeItem";
-import { PerformanceEmployeeList } from "../../Helpers/PerformanceEmployeeList";
-import "./GoalsComponent.css";
+import { PerformanceEmployeeList } from "./PerformanceEmployeeList";
+
 
 function EmployeeProfile() {
   return (
