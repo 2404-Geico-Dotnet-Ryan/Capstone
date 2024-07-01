@@ -13,17 +13,53 @@
 }
 
 .profile-header {
-    background-color: #108afdb4;
-    color: #fffbfb;
-    padding: 20px;
-    font-weight: 600;
-}
+        grid-area: 1 / 1 / 2 / 3;
+        width: auto;
+        justify-content: center;
+        padding-inline-start: 20px;
+        padding-top: 10px;
+        background-color: #108afdb4;
+        color: #fffbfb;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      
+      }
+
+.directreports-header {
+        grid-area: 1 / 1 / 2 / 3;
+        width: auto;
+        justify-content: center;
+        padding-inline-start: 20px;
+        padding-top: 10px;
+        background-color: #108afdb4;
+        color: #fffbfb;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      
+      }
+
+ 
+    
 
 .save-button {
+    font-size: 16px;
+    padding: 12px;
+    margin: 10px;
+    background-color: lightblue;
+    border-radius: 10px;
+    color: black;
+    cursor: pointer;
+    border: none;
     width: 80px;
-    align-self: end;
-    border-radius: 3px;
-    background-color: #42a942;
-    color: #fffbfb;
-    font-weight: 600;
+    align-self: center;
 }
+
+.save-button:hover {
+    background-color: #4ca5f8;
+  }
+
+  @media (max-width: 600px) {
+    .grid-container {
+      padding: 10px; /* Reduce padding on smaller screens */
+    }
+  }
