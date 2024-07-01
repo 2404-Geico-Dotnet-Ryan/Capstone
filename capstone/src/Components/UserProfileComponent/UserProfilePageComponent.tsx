@@ -88,20 +88,17 @@ function UserProfilePageComponent() {
         
 
             
-         <div>
+            <div>
         <table className="table" style={{width: 'fit-content'}}>
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Employee Name</th>
               <th>Hire Date</th>
               <th>Birthday</th>
               <th>Email</th>
               <th>Phone Number</th>
               <th>Address</th>
-              <th>City</th>
-              <th>VA</th>
-              <th>Zip Code</th>
+         
             </tr>
           </thead>
           <tbody>
@@ -115,10 +112,8 @@ function UserProfilePageComponent() {
                 <td>{employee.birthday}</td>
                 <td>{employee.email}</td>
                 <td>{employee.phoneNumber}</td>
-                <td>{employee.addressLine1}</td>
-                <td>{employee.city}</td>
-                <td>{employee.state}</td>
-                <td>{employee.zipCode}</td>
+                <td>{employee.addressLine1}, {employee.city}, {employee.state} {employee.zipCode}</td>
+           
                 
                 
             </tr>)
@@ -131,7 +126,9 @@ function UserProfilePageComponent() {
 
 
 
+
             
+
 
                  {/* {user.isManager && (
                     <div>
@@ -148,7 +145,9 @@ function UserProfilePageComponent() {
 
 
 
+
     )
 }
+
 
 export default UserProfilePageComponent;
