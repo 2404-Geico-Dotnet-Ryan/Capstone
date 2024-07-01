@@ -10,7 +10,7 @@ import PerformanceComponent from './Components/PerformanceComponent/PerformanceC
 import LandingPageComponent from './Components/LandingPageComponent/LandingPageComponent';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import PasswordReset from './Components/PasswordReset/PasswordReset';
-
+import UserProfilePageComponent from './Components/UserProfileComponent/UserProfilePageComponent';
 
 function App() {
   /*
@@ -32,6 +32,8 @@ function App() {
           <Route path="/performance" element={<PerformanceComponent/>}></Route> 
           <Route path="/goals" element={<GoalsComponent/>}></Route>
           <Route path="/LandingPage" element={<LandingPageComponent/>}/>
+          <Route path="/user" element={<UserProfilePageComponent/>}/>
+
         </Routes>
       </UserContext.Provider>
     </div>

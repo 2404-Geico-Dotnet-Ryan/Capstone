@@ -1,0 +1,29 @@
+.profile {
+    box-shadow: 0px 10px 10px #ccc;
+    border-radius: 10px;
+    max-width: 80%;
+    overflow-y: auto;
+    margin: 50px;
+    border: 0.5 solid #ddd;
+
+    label {
+        font-weight: 600;
+        width: 200px;
+    }
+}
+
+.profile-header {
+    background-color: #108afdb4;
+    color: #fffbfb;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.save-button {
+    width: 80px;
+    align-self: end;
+    border-radius: 3px;
+    background-color: #42a942;
+    color: #fffbfb;
+    font-weight: 600;
+}
