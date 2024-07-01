@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { User, UserLoginInput } from '../LoginComponent';
-import "./LoginFormComponent.css";
+import "../LoginComponent/LoginFormComponent/LoginFormComponent.css";
+import { UserLoginInput } from '../LoginComponent/LoginComponent';
 
-function LoginFormComponent(props: any) {
+function ForgotPasswordComponent(props: any) {
     /*
         Since we are expecting to get the user input for the login, we need to store the input somewhere.
 
@@ -37,17 +37,28 @@ function LoginFormComponent(props: any) {
     }
 
   return (
-    <div className='LoginForm'>
-        <h3>.Net Workforce User Login:</h3>
+    <div className='LoginForm'> {/*Leaving as 'LoginForm' as this is the base css for the login/forgot/reset containers*/}
+        <h3>Forgot Password:</h3>
         <input className='username' onChange={usernameInputChangeHandler} type="text" placeholder='username'></input>
         <br/>
-        <input className='password' onChange={passwordInputChangeHandler} type="password" placeholder='password'></input>
+        <input className='password' onChange={passwordInputChangeHandler} type="email" placeholder='email'></input>
         <br/>
         <input className='submit_btn' onClick={submitClickHandler} type="button" value="Submit"></input>
-        <p><a className='forgot_password' href="forgotpassword">Forgot Password?</a></p>
-                
+        <p><a className='forgot_password' href="resetpassword">Reset Password?</a></p>
     </div>
   )
 }
 
-export default LoginFormComponent
+export default ForgotPasswordComponent
+
+/* thoughts
+
+username
+email
+
+if username == db && email = db
+	then send email/message w/code  (assume email would have link to a seperate page to take in username and new password?)
+else
+	"username or email does nto match"
+	
+*/

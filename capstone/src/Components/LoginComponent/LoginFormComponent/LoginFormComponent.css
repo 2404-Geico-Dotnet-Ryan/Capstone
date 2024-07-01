@@ -1,0 +1,25 @@
+.LoginForm{
+    background-color: #108afd;
+    color: rgb(255, 255, 255);
+    
+    width: 25%;
+    margin: auto;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+.username{
+
+}
+
+.password{
+
+}
+
+.submit_btn{
+
+}
+.forgot_password{
+    color: rgb(255, 255, 255);
+    font-size: smaller;
+}

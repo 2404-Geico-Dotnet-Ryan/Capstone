@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { User, UserLoginInput } from '../LoginComponent';
-import "./LoginFormComponent.css";
+import "../LoginComponent/LoginFormComponent/LoginFormComponent.css";
+import { UserLoginInput } from '../LoginComponent/LoginComponent';
 
-function LoginFormComponent(props: any) {
+function ResetFormComponent(props: any) {
     /*
         Since we are expecting to get the user input for the login, we need to store the input somewhere.
 
@@ -37,11 +37,18 @@ function LoginFormComponent(props: any) {
     }
 
   return (
-    <div className='LoginForm'>
-        <h3>.Net Workforce User Login:</h3>
+    <div className='LoginForm'> {/*Leaving as 'LoginForm' as this is the base css for the login/forgot/reset containers*/}
+        <h3>Reset Password:</h3>
         <input className='username' onChange={usernameInputChangeHandler} type="text" placeholder='username'></input>
         <br/>
-        <input className='password' onChange={passwordInputChangeHandler} type="password" placeholder='password'></input>
+        <input className='password' onChange={passwordInputChangeHandler} type="password" placeholder='current password'></input>
+        <br/>
+        <br/>
+        Please provide a new password:
+        <br/>
+        <input className='password' onChange={passwordInputChangeHandler} type="password" placeholder='new password'></input>
+        <br/>
+        <input className='password' onChange={passwordInputChangeHandler} type="password" placeholder='verify new password'></input>
         <br/>
         <input className='submit_btn' onClick={submitClickHandler} type="button" value="Submit"></input>
         <p><a className='forgot_password' href="forgotpassword">Forgot Password?</a></p>
@@ -50,4 +57,20 @@ function LoginFormComponent(props: any) {
   )
 }
 
-export default LoginFormComponent
+export default ResetFormComponent
+
+/* thoughts
+
+username
+current pass
+new pass
+new pass
+
+if username == db && pass = db
+	then if new pass === new pass
+			update current pass === new pass
+		else "new pass word doesnt match
+else
+	"username or password does nto match"
+	
+*/

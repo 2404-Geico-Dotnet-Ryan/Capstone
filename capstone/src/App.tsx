@@ -8,6 +8,8 @@ import LeaveComponent from './Components/LeaveComponent/LeaveComponent';
 import GoalsComponent from './Components/GoalsComponent/GoalsComponent';
 import PerformanceComponent from './Components/PerformanceComponent/PerformanceComponent';
 import LandingPageComponent from './Components/LandingPageComponent/LandingPageComponent';
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
+import PasswordReset from './Components/PasswordReset/PasswordReset';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<LoginComponent setUser={setUser}/>}/>
+          <Route path="/forgotpassword" element={<ForgotPassword/>}></Route>
+          <Route path="/resetpassword" element={<PasswordReset/>}></Route>
           <Route path="/leave" element={<LeaveComponent/>}/>
           <Route path="/performance" element={<PerformanceComponent/>}></Route> 
           <Route path="/goals" element={<GoalsComponent/>}></Route>

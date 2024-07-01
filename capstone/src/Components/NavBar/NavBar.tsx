@@ -24,21 +24,21 @@ function NavBar() {
           <ul className="dropdown-content">
             <li>
               {" "}
-              <Link to="login">
+              <Link to="/">
                 {" "}
                  View Profile{" "}
               </Link>
             </li>
 
             <li>
-              <Link to="passwordreset">
+              <Link to="resetpassword">
                 Password
                 Reset
               </Link>
             </li>
 
             <li>
-              <Link to="login">
+              <Link to="/">
                 {" "}
                 Logout
               </Link>
