@@ -102,7 +102,7 @@ function PerformanceComponent() {
               placeholder="Employee Comments- Achievements"
               aria-label="Employee Comments- Achievements"
               rows={10}
-              cols={200}
+              // cols={200}
             ></textarea>
           </td>
           <tr>
