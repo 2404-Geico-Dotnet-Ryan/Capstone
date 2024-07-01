@@ -16,5 +16,7 @@ namespace Capstone.Services
 
         void DeleteLogin(int LoginId);
         Task<ActionResult<LoginDTO>> LoginUser(LoginDTO userLogin);
+
+        Task<LeaveEmailDTO> BuildPasswordResetDTO(string userName);
     }
 }
