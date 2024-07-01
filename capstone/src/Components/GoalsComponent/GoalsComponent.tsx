@@ -15,7 +15,8 @@ function GoalsComponent() {
           <EmployeeProfile />
         </div>
       </div>
-        <div className="selectYear">
+
+        <div className="selectYearContainer">
             <label htmlFor="reviewYear" style={{ padding: "10px", margin: "10px"}}> Select Review Year: </label>
             <select id="year" name="year" style={{ padding: "10px", margin: "1px"}}>
               <option value="pick">Select</option>
