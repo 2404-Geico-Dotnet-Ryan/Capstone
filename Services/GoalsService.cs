@@ -22,6 +22,10 @@ namespace Capstone.Services
         public GoalsDTO CreateGoal(GoalsDTO goalsDTO)
         {
             if (goalsDTO == null)
+              {
+                throw new Exception("Goal cannot be null");
+             }
+            else 
             {
                 var goal = new Goals
                 {
@@ -38,10 +42,7 @@ namespace Capstone.Services
                 _context.SaveChanges();
                 return goalsDTO;
             }
-            else 
-            {
-                throw new Exception("Goal cannot be null");
-            }
+
             
         }
 
