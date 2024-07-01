@@ -8,10 +8,10 @@ function GoalsComponent() {
     <>
       <div className="grid-container">
         <header className="header">
-          <h3>Goals</h3>
+          <h5>Goals</h5>
         </header>
         <div className="employeeContainer">
-        <div className="profile">
+        <div className="goalProfile">
           <EmployeeProfile />
         </div>
       </div>
