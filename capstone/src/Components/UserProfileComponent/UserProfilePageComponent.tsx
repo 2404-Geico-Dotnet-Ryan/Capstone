@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { UserProfileFormComponent } from './UserProfileFormComponent'
 import './UserProfilePageComponent.css'
+import { formatDrDate } from '../../Utils/dates'
 
 function UserProfilePageComponent() {
     /*
@@ -80,17 +81,20 @@ function UserProfilePageComponent() {
 
     return (
         <div className="profile">
+             <table className='table'>
             <div className="profile-header">{user.isAdmin ? '(Admin) ' : ''}{user.firstName} {user.lastName} - {user.isManager ? 'Manager' : 'Associate'} - ID {user.id}</div>
             <UserProfileFormComponent user={user}/>
-          
-
-
-        
+            </table>
+         <br />
+         <br />
+         <br />
+         <br />
 
             
-            <div>
+            <div className= "directreports">
         <table className="table" style={{width: 'fit-content'}}>
           <thead>
+          <h2>Direct Reports</h2>
             <tr>
               <th>Employee Name</th>
               <th>Hire Date</th>
@@ -105,11 +109,13 @@ function UserProfilePageComponent() {
             {employees?.map((employee, index) => {
               const birthday = new Date(employee.birthday);
               const today = new Date();
+              const hireDate = new Date(employee.hireDate);
+              
               
               return ( <tr key={index}>
                 <td>{employee.firstName} {employee.lastName}</td>
-                <td>{employee.hireDate}</td>
-                <td>{employee.birthday}</td>
+                <td>{formatDrDate(hireDate)}</td>
+                <td>{formatDrDate(birthday)}</td>
                 <td>{employee.email}</td>
                 <td>{employee.phoneNumber}</td>
                 <td>{employee.addressLine1}, {employee.city}, {employee.state} {employee.zipCode}</td>
