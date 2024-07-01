@@ -10,7 +10,10 @@ namespace Capstone.Models
 
         // This establishes the "one to many" relationship 
         // One Manager to Many Employees 
-        public ICollection<Employee> Employees { get; set; }
+        //public ICollection<Employee> Employees { get; set; } 7/1
+        public ICollection<Employee> Reports { get; set; } //7/1
+        public Employee Employee { get; set;}  //7/1
+
 
         /* NO Argurments Constructor*/
         public Manager()
