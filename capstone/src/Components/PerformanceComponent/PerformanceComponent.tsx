@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import EmployeeProfile from '../GoalsComponent/EmployeeProfile';
 import './PerformanceComponent.css';
+import EmployeeProfile from '../../Helpers/EmployeeProfile';
 
 function PerformanceComponent() {
   const BASE_URL = "http://localhost:5074";
