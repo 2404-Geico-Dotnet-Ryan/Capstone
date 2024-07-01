@@ -24,7 +24,7 @@ function NavBar() {
           <ul className="dropdown-content">
             <li>
               {" "}
-              <Link to="/">
+              <Link to="user">
                 {" "}
                  View Profile{" "}
               </Link>
