@@ -13,12 +13,11 @@ interface EmployeeItemProps {
 function EmployeeItem({ firstName, lastName, id, title, department, manager }: EmployeeItemProps) {
   return (
     <div className='employeeProfile'>
-        <h2>Employee: {firstName} {lastName}</h2>
-        <h4>Employee ID: {id}</h4>
-        <h4>Title: {title}</h4>
-        <h4>Department: {department}</h4>
-        <h4>Manager: {manager}</h4>
-
+        <h5>Employee: {firstName} {lastName}</h5>
+        <p>Employee ID: {id}</p>
+        <p>Title: {title}</p>
+        <p>Department: {department}</p>
+        <p>Manager: {manager}</p>
     </div>
   )
 }

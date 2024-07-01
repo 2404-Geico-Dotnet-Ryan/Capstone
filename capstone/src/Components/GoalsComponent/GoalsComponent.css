@@ -5,94 +5,68 @@
   padding: 30px;
 }
 
-.employeeYearContainer {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 75px;
-  }
-  .employeeYearContainer .header {
-    font-size: 30px;
-    font-weight: bold;
-    justify-content: center;
-    margin-bottom: 20px;
-    border: solid darkblue; 
-    border-radius: 10px;
-    padding-inline-start: 50px;
-    background-color: rgb(150, 199, 248)
-  }
-  .employeeYearContainer .profile {
-    height: 100%;
-    justify-content: left;
-    align-items: left;
-    padding-left: 50px;
-
-  }
-  
-.rightSide {
-  display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-
-}
-.rightSide .selectYear {
-    font-size: 20px;
-    display: inline-block;
-    position: center;
-    width: 50%;
-}
-.rightSide .submitButton {
-    font-size: 20px;
-    position: center;
-}
-
-/* .grid-container {
+.grid-container {
   display: grid;
   grid-template-areas:
-    "header header header header"
-    "left left left right"
-    "left left left right";
+    "header header"
+    "employeeContainer selectYear"
+    "employeeContainer submitButton";
 
-  grid-template-columns: auto 80px;
+  grid-template-columns: auto auto;
   gap: 0px;
-  background-color: #2196f3;
-  padding: 10px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.grid-container > div {
-  background-color: #ffffffcc;
-  font-size: 10px;
-  padding: 20px 0;
-  font-size: 30px;
+.grid-container .header {
+  grid-area: 1 / 1 / 2 / 3;
+  font-size: 25px;
+  font-weight: bold;
+  justify-content: center;
+  padding-inline-start: 50px;
+  padding-top: 10px;
+  background-color: #108afdb4;
+  color: ghostwhite;
+  border-left: solid rgb(211, 216, 218);
+  border-right: solid rgb(211, 216, 218);
+  border-top: solid rgb(211, 216, 218);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
-.header {
-  grid-area: header;
-  background-color: blue;
+.grid-container > .selectYear {
+  font-size: 18px;
+  text-align: center;
   padding: 30px;
-  text-align: center;
-}
-.left {
-  grid-area: left;
-  text-align: left;
-  text-indent: 50px;
-}
-
-.right {
-  grid-area: right;
-  text-align: center;
-}
-
-.selectYear {
-  font-size: 20px;
-  display: inline-block;
-  position: center;
-  width: 50%;
+  border-right: solid rgb(211, 216, 218);
+  border-bottom: solid rgb(211, 216, 218);
+  border-bottom-right-radius: 25px;
 }
 
 .submitButton {
-  font-size: 20px;
-  position: center;
-} */
+  font-size: 16px;
+  padding: 10px;
+  margin: 20px;
+  background-color: #4ca5f8b4;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  border: solid rgb(189, 191, 192);
+}
+
+.grid-container > .employeeContainer {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 150px;
+  padding-right: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  border-left: solid rgb(211, 216, 218);
+  border-right: solid rgb(211, 216, 218);
+  border-bottom: solid rgb(211, 216, 218);
+  border-bottom-left-radius: 25px;
+}
+
