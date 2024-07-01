@@ -138,6 +138,22 @@ namespace Capstone.Services
             _context.Logins.Update(login);
             _context.SaveChanges();
         }
-    }
 
+     public async Task<LeaveEmailDTO> BuildPasswordResetDTO(string userName)
+        {   
+            // Build new LeaveEmailDTO object
+            LeaveEmailDTO emailData = new();
+
+            // Read tables to gather data needed to send out an email
+            Login loginData = await _context.Logins.FirstAsync(l => l.UserName == userName);
+            Employee employeeData = await _context.Employees.FirstAsync(e => e.EmployeeId == loginData.EmployeeId);
+            
+            // Add data into the LeaveEmailDTO so it can be sent back and used to send out email
+            emailData.EmployeeFirstName = employeeData.FirstName;
+            emailData.EmployeeLastName = employeeData.LastName;
+            emailData.EmployeeEmail = employeeData.Email;
+
+            return emailData;
+        }
+    }
 }

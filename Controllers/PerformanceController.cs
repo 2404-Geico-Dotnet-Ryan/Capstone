@@ -69,5 +69,21 @@ namespace Capstone.Controllers
             _performanceService.DeletePerformance(performanceId);
             return Ok();
         }
+
+        //URI to send e-mail after Employee completes Performance review
+        [HttpPost("Employee/{performanceId}")]
+        public async Task<ActionResult> SendPerformanceRequestEmail(int performanceId)
+        {   
+            EmailService.ToManagerPerformanceEmailDTO(await _performanceService.BuildPerformanceRequestDTO(performanceId));
+            return Ok();
+        }
+
+        //URI to send e-mail after Manager reviews leave
+        [HttpPost("Manager/{performanceId}")]
+        public async Task<ActionResult> SendPerformanceReviewedEmail(int performanceId)
+        {   
+            EmailService.ToEmployeePerformanceEmailDTO(await _performanceService.BuildPerformanceRequestDTO(performanceId));
+            return Ok();
+        }
     }
 }
