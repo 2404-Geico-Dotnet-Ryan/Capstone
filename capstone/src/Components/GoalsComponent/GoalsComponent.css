@@ -3,17 +3,19 @@
   height: 90vh;
   display: flex;
   padding: 30px;
+  justify-content: center;
 }
 
 .grid-container {
   display: grid;
+  margin: auto;
   grid-template-areas:
     "header header"
     "employeeContainer selectYear"
     "employeeContainer submitButton";
-
   grid-template-columns: auto auto;
   gap: 0px;
+  width: 75%;
   padding-left: 100px;
   padding-right: 100px;
   padding-top: 20px;
@@ -60,8 +62,9 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-left: 150px;
-  padding-right: 100px;
+  text-align: left;
+  padding-left: 100px;
+  padding-right: 50px;
   padding-top: 25px;
   padding-bottom: 20px;
   border-left: solid rgb(211, 216, 218);
