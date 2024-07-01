@@ -1,8 +1,8 @@
-
 using Capstone.Data;
 using Capstone.DTOs;
 using Capstone.Models;
 using Capstone.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Capstone.Services
@@ -19,7 +19,7 @@ namespace Capstone.Services
 
 
 
-        public Goals CreateGoal(GoalsDTO goalsDTO)
+        public GoalsDTO CreateGoal(GoalsDTO goalsDTO)
         {
             if (goalsDTO == null)
             {
@@ -36,7 +36,7 @@ namespace Capstone.Services
                 };
                 _context.Goals.Add(goal);
                 _context.SaveChanges();
-                return goal;
+                return goalsDTO;
             }
             else 
             {
@@ -123,33 +123,29 @@ namespace Capstone.Services
             }
             return goalsDTO;
         }
-
-        public void UpdateGoal(int goalId, GoalsDTO UpdateGoal)
+    public GoalsDTO UpdateGoal(int goalId, GoalsDTO updateGoalDTO)
         {
-            var goal = _context.Goals.FirstOrDefault(g => g.GoalId == goalId);
+            var goal = _context.Goals.Find(goalId);
             if (goal != null)
             {
-                goal.GoalId = UpdateGoal.GoalId;
-                goal.PerformanceId = UpdateGoal.PerformanceId;
-                goal.Goal = UpdateGoal.Goal;
-                goal.Deliverable = UpdateGoal.Deliverable;
-                goal.Deadline = UpdateGoal.Deadline;
-                goal.Weightage = UpdateGoal.Weightage;
-                goal.GoalScore = UpdateGoal.GoalScore;
-                goal.ManagerFeedback = UpdateGoal.ManagerFeedback;
+                goal.GoalId = updateGoalDTO.GoalId;
+                goal.PerformanceId = updateGoalDTO.PerformanceId;
+                goal.Goal = updateGoalDTO.Goal;
+                goal.Deliverable = updateGoalDTO.Deliverable;
+                goal.Deadline = updateGoalDTO.Deadline;
+                goal.Weightage = updateGoalDTO.Weightage;
+                goal.GoalScore = updateGoalDTO.GoalScore;
+                goal.ManagerFeedback = updateGoalDTO.ManagerFeedback;
+                _context.Goals.Update(goal);
                 _context.SaveChanges();
+                return updateGoalDTO;
+
             }
             else
             {
                 throw new Exception("Goal not found");
             }
         }
-
-        GoalsDTO IGoalsService.CreateGoal(GoalsDTO Goal)
-        {
-            throw new NotImplementedException();
-        }
     }
-
 
     }

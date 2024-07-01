@@ -1,6 +1,25 @@
 .table-wrapper {
     width: 100%;
 }
+
+.buttons-container{
+    display:flex;
+    float: right;
+    top: -40px;
+   
+    margin-right: 117px;
+    margin-bottom: 20px;
+}
+
+.buttons-container button{
+    margin: .25rem;
+    border-radius: 5px;
+    background-color: #ADD8E6;
+    color: black;
+    border: none;
+    font-size: 16px;
+    
+}
  
 .table {
     display: block;
@@ -68,3 +87,4 @@
 .delete-btn{
     color:#d9534f;
 }
+
