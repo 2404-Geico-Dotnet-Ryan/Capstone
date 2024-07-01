@@ -22,6 +22,16 @@ function PerformanceComponent() {
       .catch(error => console.error('Error fetching data:', error))
   }, []);
 
+  function clickSubmit() {
+    console.log("Submit button clicked");
+  }
+
+  function achievementsInputChanged(event: any) {
+    console.log(event.target.value);
+  }
+  function improvementsInputChanged(event: any) {
+    console.log(event.target.value);
+  }
   return (
     <div className='table-wrapper'>
       <table className='table'>
@@ -91,7 +101,7 @@ function PerformanceComponent() {
         </thead>
         <tbody>
           <td>
-            <textarea
+            <textarea onChange={achievementsInputChanged}
               className="form-control"
               placeholder="Employee Comments- Achievements"
               aria-label="Employee Comments- Achievements"
@@ -101,7 +111,7 @@ function PerformanceComponent() {
           </td>
           <tr>
             <td>
-              <textarea
+              <textarea onChange={improvementsInputChanged}
                 className="form-control"
                 placeholder="Employee Comments- Areas of Improvement"
                 aria-label="Employee Comments- Areas of Improvement"
@@ -112,7 +122,7 @@ function PerformanceComponent() {
             </td>
           </tr>
           <td>
-            <button type="button" className="btn" style={{ background: "lightblue" }}>Submit</button>
+            <button onClick={clickSubmit} type="button" className="btn" style={{ background: "lightblue" }}>Submit</button>
           </td>
           {/* {employees.map(employee => (
         <tr key={employee}>
