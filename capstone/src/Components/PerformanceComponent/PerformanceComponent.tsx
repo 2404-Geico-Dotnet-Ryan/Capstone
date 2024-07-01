@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import EmployeeProfile from '../GoalsComponent/EmployeeProfile';
+import './PerformanceComponent.css';
 
 function PerformanceComponent() {
   const BASE_URL = "http://localhost:5074";
@@ -55,36 +57,28 @@ function PerformanceComponent() {
       <br />
       <br />
       {/* code for employee to select review year */}
-      <table className="table" style={{ width: "fit-content" }} >
-        <thead>
-          <tr>
-            <th>Annual Performance Review</th>
+      <div className="grid-container">
+        <header className="header">
+          <h5>Annual Performance Review</h5>
+        </header>
+        <div className="employeeContainer">
+        <div className="performanceProfile">
+          <EmployeeProfile />
+        </div>
+      </div>
 
-          </tr>
-        </thead>
-        <tbody>
-          <td>Employee:</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>Review Year:</td>
-          <select className="form-select" >
-            <option selected> Select </option>
-            <option value="1">2024</option>
-            <option value="2">2023</option>
-            <option value="3">2022</option>
-          </select>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button type="button" className="btn" style={{ background: "lightblue" }}>Submit</button>
-
-          </td>
-        </tbody>
-      </table>
+        <div className="selectYearContainer">
+            <label htmlFor="reviewYear" style={{ padding: "10px", margin: "10px"}}> Select Review Year: </label>
+            <select id="year" name="year" style={{ padding: "10px", margin: "1px"}}>
+              <option value="pick">Select</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+            <button type="button" className="submitButton">Submit
+          </button>
+          </div>
+        </div>
       <br />
       <br />
       {/* starting Employee Comment section here */}
