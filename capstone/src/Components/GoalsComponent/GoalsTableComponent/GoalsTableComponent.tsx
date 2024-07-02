@@ -1,57 +1,97 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import "../../LeaveComponent/TableComponent.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
-function GoalsTableComponent() {
-  const clickEventApplyGoal = () => {
-    console.log("Apply Goal button clicked");
-  };
-  const navigate = useNavigate();
-  const clickEventEditGoal = () => {
-    navigate("/user");
-    console.log("Edit Goal button clicked");
-  };
 
-  return (
-    <div>
-      <div className="table-wrapper" >
-        {/* <div className="buttons-container">
-          <button onClick={clickEventApplyGoal}>Save</button>
-          <button onClick={clickEventEditGoal}>Edit</button>
-        </div> */}
-        <table className="table" style={{margin: "0"}}>
-          <thead>
-            <tr>
-              <th>Goal</th>
-              <th className="expand" >Deliverable / Description</th>
-              <th>Weight</th>
-              <th>Due Date</th>
-              <th>Rating</th>
-              <th>Comments</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Big Goal</td>
-              <td>Paid Time Off</td>
-              <td>25%</td>
-              <td>7/12/2024</td>
-              <td>4</td>
-                <td>Great Job!</td>
-                <td>
-                    <span className="actions">
-                    <BsFillTrashFill className="delete-btn" />
-                    <BsFillPencilFill />
-                    </span> 
-                </td>
-             </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+const baseUrl = 'http://localhost:5074';
+
+
+// This interface is based on the backend API
+
+export interface userGoalInput {
+  goalId: number;
+  performanceId: number;
+  goal: string;
+  deliverable: string;
+  deadline: Date;
+  weightage: number;
+  goalScore: number;
+  managerFeedback: string;
 }
 
-export default GoalsTableComponent;
+// Make sure the fields match the response JSON from the API (use Swagger to check)
+export interface Goal {
+  goalId: number;
+  performanceId: number;
+  goal: string;
+  deliverable: string;
+  deadline: Date;
+  weightage: number;
+  goalScore: number;
+  managerFeedback: string;
+}
+
+
+function GoalsTableComponent() {
+
+  const [goals, setGoals] = useState<any[] | undefined>(undefined);
+
+// below is the API call without axios
+  // useEffect(() => {
+  //   async function getGoals() {
+  //     let response = await fetch('${BASE_URL}/Goals');
+  //     let data = await response.json();
+  //     setGoals(data);
+  //     console.log(data); // Check the console to see the data - now we know it's being returned correctly
+  //   }
+  //   getGoals();
+  // }, []); // This empty array is important - it tells React to only run this once, don't keep re-running it
+
+  //if we use axios to fetch data from the API, we can use the following code - using axios how my fetch all goals is coded
+  useEffect(() => {
+    async function getGoals() {
+      let response = await axios.get(`${baseUrl}/Goals`);
+      setGoals(response.data);
+      console.log(response.data); // Check the console to see the data - now we know it's being returned correctly
+    }
+    getGoals();
+  }, []); 
+
+ 
+  return (
+    <div>
+      <table className="table">
+        <thead>
+          <tr>                    
+            <th>Goal</th>
+            <th>Deliverable</th>
+            <th>Due Date</th>
+            <th>Goal Weight</th>
+            <th>Goal Score</th>
+            <th>Feedback</th>
+          </tr>
+        </thead>
+        <tbody> 
+          {goals?.map((goal) => {
+            return (
+              <tr key={goal.goalId}>
+                <td>{goal.goal}</td>
+                <td>{goal.deliverable}</td>
+                <td>{goal.deadline}</td>
+                <td>{goal.weightage}</td>
+                <td>{goal.goalScore}</td>
+                <td>{goal.managerFeedback}</td>
+                
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+
+}
+
+export default GoalsTableComponent
