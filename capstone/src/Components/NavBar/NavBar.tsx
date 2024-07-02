@@ -82,20 +82,20 @@ function NavBar() {
           Administrative{" "}
           <ul className="dropdown-content">
             <li>
-              <Link to="Admin">
+              <Link to="createProfile">
                 Create
                 Profile{" "}
               </Link>{" "}
             </li>
             <li>
-              <Link to="Reporting">
+              <Link to="deleteProfile">
              {" "}
                 Delete
                 Profile{" "}
               </Link>{" "}
             </li>
             <li>
-              <Link to="Admin">
+              <Link to="updateProfile">
                 Update
                 Profile{" "}
               </Link>{" "}

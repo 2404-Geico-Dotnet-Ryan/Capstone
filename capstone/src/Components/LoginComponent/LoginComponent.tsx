@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoginFormComponent from "./LoginFormComponent/LoginFormComponent";
 
 //Base URL
-const BASE_URL = "http://localhost:5074";
+export const BASE_URL = "http://localhost:5074";
 let setUser = {};
 
 export interface UserLoginInput {

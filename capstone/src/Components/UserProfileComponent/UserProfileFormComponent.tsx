@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { formatFullDateForInput } from '../../Utils/dates';
 import { UserContext } from '../../context/UserContext';
+import { BASE_URL } from '../LoginComponent/LoginComponent';
 
 export function UserProfileFormComponent(props: {user: any}) {
     const loggedInUser = useContext(UserContext);
@@ -20,7 +21,7 @@ export function UserProfileFormComponent(props: {user: any}) {
     const [zipCode, setZipCode] = React.useState(user?.zipCode);                //employee and manager can edit
 
     const onSaveProfile = async () => {
-        let response = await fetch(`http://localhost:5074/Employee/${user.id}`, {
+        let response = await fetch(`${BASE_URL}/Employee/${user.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

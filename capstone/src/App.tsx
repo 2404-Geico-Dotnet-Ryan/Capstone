@@ -11,6 +11,9 @@ import LandingPageComponent from './Components/LandingPageComponent/LandingPageC
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import PasswordReset from './Components/PasswordReset/PasswordReset';
 import UserProfilePageComponent from './Components/UserProfileComponent/UserProfilePageComponent';
+import CreateProfileComponent from './Components/AdminComponent/CreateProfileComponent';
+import DeleteProfileComponent from './Components/AdminComponent/DeleteProfileComponent';
+import UpdateProfileComponent from './Components/AdminComponent/UpdateProfileComponent';
 
 function App() {
   /*
@@ -33,6 +36,9 @@ function App() {
           <Route path="/goals" element={<GoalsComponent/>}></Route>
           <Route path="/LandingPage" element={<LandingPageComponent/>}/>
           <Route path="/user" element={<UserProfilePageComponent/>}/>
+          <Route path="/createProfile" element={<CreateProfileComponent/>}/>
+          <Route path="/deleteProfile" element={<DeleteProfileComponent/>}/>
+          <Route path="/updateProfile" element={<UpdateProfileComponent/>}/>
 
         </Routes>
       </UserContext.Provider>
